@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Feedback - Teacher</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="teacher.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-left">
+            <img src="https://www.leanderisd.org/wp-content/uploads/2025/05/LEANDER✵ISD-Duotone-Blue-With-Tagline.png" alt="Leander ISD Logo" class="lisd-logo">
+        </div>
+        <div class="nav-right">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="feedback.html" class="nav-link active">View Feedback</a>
+            <div class="profile-dropdown">
+                <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="nav-icon" id="profileBtn">
+                <div class="dropdown-menu hide" id="profileMenu">
+                    <h3>Teacher Settings</h3>
+                    <button class="dropdown-item" id="themeToggle">Toggle Light/Dark Mode</button>
+                    <button class="dropdown-item" onclick="window.location.href='settings.html'">Settings</button>
+                    <button class="dropdown-item" onclick="sessionStorage.clear(); window.location.href='/'">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="app-header">
+        <h1>Your Feedback</h1>
+        <p class="subtitle" id="feedbackSubtitle">Loading...</p>
+    </header>
+
+    <div class="container">
+        <div class="feedback-table-container">
+            <table id="feedbackTable">
+                <thead>
+                    <tr>
+                        <th>Positive Feedback</th>
+                        <th>Constructive Feedback</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody id="feedbackBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="teacher.js"></script>
+    <script>
+        // Auto-refresh feedback every 10 seconds
+        setInterval(loadTeacherFeedback, 10000);
+        
+        // Load on page load
+        document.addEventListener('DOMContentLoaded', loadTeacherFeedback);
+
+        async function loadTeacherFeedback() {
+            const user = JSON.parse(sessionStorage.getItem('user'));
+            if (!user || !user.teacherName) {
+                document.getElementById('feedbackBody').innerHTML = 
+                    '<tr class="empty-row"><td colspan="3">Please log in as a teacher to view feedback.</td></tr>';
+                return;
+            }
+
+            try {
+                const res = await fetch(`http://localhost:3000/feedback/teacher/${user.teacherName}`);
+                const data = await res.json();
+                
+                const tbody = document.getElementById('feedbackBody');
+                const subtitle = document.getElementById('feedbackSubtitle');
+                
+                subtitle.textContent = `Showing ${data.length} feedback entries for ${user.teacherName}`;
+                
+                if (data.length === 0) {
+                    tbody.innerHTML = '<tr class="empty-row"><td colspan="3">No feedback yet. Check back later!</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = data.map(f => `
+                    <tr>
+                        <td>${f.positive || '-'}</td>
+                        <td>${f.constructive || '-'}</td>
+                        <td>${new Date(f.timestamp).toLocaleString()}</td>
+                    </tr>
+                `).reverse().join('');
+            } catch (err) {
+                console.error(err);
+                document.getElementById('feedbackBody').innerHTML = 
+                    '<tr class="empty-row"><td colspan="3" style="color:#e53935">Failed to load feedback</td></tr>';
+            }
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Feedback</title>
+<link rel="stylesheet" href="student.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="top-nav">
+    <div class="nav-left">
+        <img src="https://www.leanderisd.org/wp-content/uploads/2025/05/LEANDER✵ISD-Duotone-Blue-With-Tagline.png" alt="Leander ISD Logo" class="lisd-logo">
+    </div>
+    <div class="nav-right">
+        <a href="#" class="nav-link active" data-tab="home">Home</a>
+        <a href="#" class="nav-link" data-tab="submitted">Submitted Feedback</a>
+        <div class="profile-dropdown">
+            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="nav-icon" id="profileBtn">
+            <div class="dropdown-menu hide" id="profileMenu">
+                <h3>Student Settings</h3>
+                <button class="dropdown-item" id="themeToggle">Toggle Light/Dark Mode</button>
+                <button class="dropdown-item" onclick="window.location.href='settings.html'">Settings</button>
+                <button class="dropdown-item" onclick="sessionStorage.clear(); window.location.href='/'">Logout</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- HOME TAB - Feedback Form -->
+<div id="homeTab" class="tab-content active">
+    <header class="app-header">
+        <h1 id="welcomeMsg">Submit Feedback</h1>
+    </header>
+
+    <div class="container">
+        <div class="feedback-form card-list">
+            <div class="feedback-card">
+                <div class="card-top">
+                    <span class="teacher">Share Your Thoughts</span>
+                </div>
+                <form id="studentForm">
+                    <div class="form-group teacher-select-group">
+                        <label for="teacherSelect"><strong>Select Teacher:</strong></label>
+                        <select id="teacherSelect" required>
+                            <option value="" disabled selected>Choose a teacher</option>
+                            <option value="John">John</option>
+                            <option value="Archit">Archit</option>
+                            <option value="Sam">Sam</option>
+                            <option value="Madison">Madison</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="positiveFeedback"><strong>Positive Feedback:</strong></label>
+                        <textarea id="positiveFeedback" rows="3" placeholder="What did you like?" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="constructiveFeedback"><strong>Constructive Feedback:</strong></label>
+                        <textarea id="constructiveFeedback" rows="3" placeholder="What could be improved?"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="primary">Submit Feedback</button>
+                    </div>
+
+                    <div id="thankMessage" class="thank-message">Thank you for your feedback!</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SUBMITTED TAB - View Past Feedback -->
+<div id="submittedTab" class="tab-content">
+    <header class="app-header">
+        <h1>Your Submitted Feedback</h1>
+    </header>
+
+    <div class="container">
+        <div id="feedbackList" class="card-list"></div>
+    </div>
+</div>
+
+<!-- Modal for viewing feedback details -->
+<div id="feedbackModal" class="modal hide">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modalTeacher">Teacher Name</h2>
+        <p><strong>Positive Feedback:</strong></p>
+        <p id="modalPositive"></p>
+        <p><strong>Constructive Feedback:</strong></p>
+        <p id="modalConstructive"></p>
+        <p class="meta" id="modalTimestamp"></p>
+    </div>
+</div>
+
+<script src="student.js"></script>
+</body>
+</html>

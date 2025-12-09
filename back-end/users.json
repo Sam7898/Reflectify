@@ -1,0 +1,51 @@
+[
+  {
+    "username": "admin",
+    "passwordHash": "$2b$10$6yO2NKRCnzW6BDB0hGgcoek3g5GbfWXj4Ep/tq0nYJqLjEFd7pN/G",
+    "role": "admin"
+  },
+  {
+    "username": "teacher",
+    "passwordHash": "$2b$10$6yO2NKRCnzW6BDB0hGgcoek3g5GbfWXj4Ep/tq0nYJqLjEFd7pN/G",
+    "role": "teacher"
+  },
+  {
+    "username": "student",
+    "passwordHash": "$2b$10$6yO2NKRCnzW6BDB0hGgcoek3g5GbfWXj4Ep/tq0nYJqLjEFd7pN/G",
+    "role": "student"
+  },
+  {
+    "username": "adminTest",
+    "passwordHash": "$2b$10$EkRQoUkYzzKl8Du8HtNb6uTvj0qys3tZtCvdEoE9QJ2QmF.yI53CS",
+    "role": "admin"
+  },
+  {
+    "username": "teacherTest",
+    "passwordHash": "$2b$10$3HJ8FsHmSr3ekgwO7CQleO3FYmYWG9dUGflnxjzIw0qFGXIvtekuW",
+    "role": "teacher"
+  },
+  {
+    "username": "studentTest",
+    "passwordHash": "$2b$10$c9fVDFmtaJ7VWCxeiYLov.n/12KKztaZ8.9HQJLSaG4mtNIXDJXRC",
+    "role": "student"
+  },
+  {
+    "username": "johnTeacher",
+    "passwordHash": "$2b$10$3/iqmBmgnlB07noRG6eIoeuX2YLXhRsgZsr1xsu8R5LnQxrxK623K",
+    "role": "teacher",
+    "name": "john",
+    "teacherName": "John"
+  },
+  {
+    "username": "adminTest1",
+    "passwordHash": "$2b$10$1oDxtgC20ZDlL5udL3zJreq9tUuFSTu6515CtPO62IKcGCIb2to72",
+    "role": "admin",
+    "name": "admin"
+  },
+  {
+    "username": "architS",
+    "passwordHash": "$2b$10$Pvvs3Na1ZQcnw5pQO4Kp2eI9d5IZWdCr56Sn5Rno9DMVFku84QXb.",
+    "role": "admin",
+    "name": "archit"
+  }
+]

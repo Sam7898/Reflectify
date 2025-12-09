@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Home</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <nav class="top-nav">
+        <div class="nav-left">
+          <img src="https://www.leanderisd.org/wp-content/uploads/2025/05/LEANDER✵ISD-Duotone-Blue-With-Tagline.png"
+               class="lisd-logo">
+        </div>
+      
+        <div class="nav-right">
+          <a href="1-index.html" class="nav-link">Home</a>
+          <a href="2-admin-analytics.html" class="nav-link">Analytics</a>
+          <a href="3-admin-feedback.html" class="nav-link">Feedback Dashboard</a>
+      
+          <div class="profile-dropdown">
+            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+                 class="nav-icon" id="profileBtn">
+            <div class="dropdown-menu hide" id="profileMenu">
+              <h3>Admin Settings</h3>
+              <button class="dropdown-item" id="themeToggle">Toggle Light/Dark Mode</button>
+              <button class="dropdown-item" onclick="window.location.href='settings.html'">Settings</button>
+              <button class="dropdown-item" onclick="sessionStorage.clear(); window.location.href='/'">Logout</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+<header class="app-header">
+    <h1 id="welcomeMsg">Admin Portal</h1>
+</header>
+
+<div class="dashboard-grid">
+
+    <!-- Analytics -->
+    <a href="2-admin-analytics.html" class="dashboard-card">
+        <img id="analytics-img" src="https://cdn-icons-png.flaticon.com/512/716/716784.png">
+        <h2>Analytics</h2>
+        <p>View data, metrics, and insights.</p>
+    </a>
+
+    <!-- Feedback Dashboard -->
+    <a href="3-admin-feedback.html" class="dashboard-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/3884/3884851.png">
+        <h2>Feedback Dashboard</h2>
+        <p>Review all student feedback.</p>
+    </a>
+
+    <!-- Settings -->
+    <a href="settings.html" class="dashboard-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/2099/2099058.png">
+        <h2>Settings</h2>
+        <p>Manage your profile.</p>
+    </a>
+
+</div>
+<script src="admin.js"></script>
+<script>
+    // Set welcome message
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    if (user && user.name) {
+        document.getElementById('welcomeMsg').textContent = `Welcome, ${user.name}!`;
+    }
+</script>
+</body>
+</html>

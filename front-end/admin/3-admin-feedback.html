@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Feedback Dashboard</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <nav class="top-nav">
+        <div class="nav-left">
+          <img src="https://www.leanderisd.org/wp-content/uploads/2025/05/LEANDER✵ISD-Duotone-Blue-With-Tagline.png"
+               class="lisd-logo">
+        </div>
+      
+        <div class="nav-right">
+          <a href="1-index.html" class="nav-link">Home</a>
+          <a href="2-admin-analytics.html" class="nav-link">Analytics</a>
+          <a href="3-admin-feedback.html" class="nav-link">Feedback Dashboard</a>
+      
+          <div class="profile-dropdown">
+            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+                 class="nav-icon" id="profileBtn">
+            <div class="dropdown-menu hide" id="profileMenu">
+              <h3>Admin Settings</h3>
+              <button class="dropdown-item" id="themeToggle">Toggle Light/Dark Mode</button>
+              <button class="dropdown-item" onclick="window.location.href='settings.html'">Settings</button>
+              <button class="dropdown-item" onclick="sessionStorage.clear(); window.location.href='/'">Logout</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+<header class="app-header">
+    <h1>Admin Feedback Dashboard</h1>
+</header>
+
+<div class="container">
+
+    <div class="controls">
+        <select id="teacherFilter">
+            <option value="all">All Teachers</option>
+        </select>
+
+        <button class="primary" id="refreshBtn">⟳ Refresh</button>
+        <button class="warn" id="clearBtn">Clear All</button>
+    </div>
+
+    <div id="feedbackList" class="card-list"></div>
+
+</div>
+
+<div id="feedbackModal" class="modal hide">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modalTeacher"></h2>
+        <p><strong>Positive Feedback:</strong></p>
+        <p id="modalPositive"></p>
+        <p><strong>Constructive Feedback:</strong></p>
+        <p id="modalConstructive"></p>
+        <p class="meta" id="modalTimestamp"></p>
+    </div>
+</div>
+
+<script src="admin.js"></script>
+
+</body>
+</html>

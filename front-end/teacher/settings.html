@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Teacher</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="teacher.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-left">
+            <img src="https://www.leanderisd.org/wp-content/uploads/2025/05/LEANDER✵ISD-Duotone-Blue-With-Tagline.png" alt="Leander ISD Logo" class="lisd-logo">
+        </div>
+        <div class="nav-right">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="feedback.html" class="nav-link">View Feedback</a>
+            <div class="profile-dropdown">
+                <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="nav-icon" id="profileBtn">
+                <div class="dropdown-menu hide" id="profileMenu">
+                    <h3>Teacher Settings</h3>
+                    <button class="dropdown-item" id="themeToggle">Toggle Light/Dark Mode</button>
+                    <button class="dropdown-item" onclick="window.location.href='settings.html'">Settings</button>
+                    <button class="dropdown-item" onclick="sessionStorage.clear(); window.location.href='/'">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="app-header">
+        <h1>Settings</h1>
+        <p class="subtitle">Manage your profile</p>
+    </header>
+
+    <div class="container">
+        <div class="settings-card">
+            <h2>Edit Profile</h2>
+            
+            <div class="message success-message" id="successMsg"></div>
+            <div class="message error-message" id="errorMsg"></div>
+
+            <form id="profileForm">
+                <div class="form-group">
+                    <label for="settingsName">Full Name</label>
+                    <input type="text" id="settingsName" placeholder="Your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="settingsUsername">Username</label>
+                    <input type="text" id="settingsUsername" placeholder="Your username" required minlength="3">
+                </div>
+
+                <div class="form-group">
+                    <label for="settingsPassword">New Password (leave blank to keep current)</label>
+                    <input type="password" id="settingsPassword" placeholder="Enter new password" minlength="6">
+                </div>
+
+                <button type="submit" class="submit-btn">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="teacher.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(sessionStorage.getItem('user'));
+            if (user) {
+                document.getElementById('settingsName').value = user.name || '';
+                document.getElementById('settingsUsername').value = user.username || '';
+            }
+        });
+
+        document.getElementById('profileForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const user = JSON.parse(sessionStorage.getItem('user'));
+            const name = document.getElementById('settingsName').value.trim();
+            const newUsername = document.getElementById('settingsUsername').value.trim();
+            const newPassword = document.getElementById('settingsPassword').value;
+
+            const errorMsg = document.getElementById('errorMsg');
+            const successMsg = document.getElementById('successMsg');
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'none';
+
+            try {
+                const response = await fetch('/api/profile', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        currentUsername: user.username,
+                        name,
+                        newUsername: newUsername !== user.username ? newUsername : undefined,
+                        newPassword: newPassword || undefined
+                    })
+                });
+
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.message);
+
+                // Update session
+                user.name = data.name;
+                user.username = data.username;
+                sessionStorage.setItem('user', JSON.stringify(user));
+
+                successMsg.textContent = 'Profile updated successfully!';
+                successMsg.style.display = 'block';
+                document.getElementById('settingsPassword').value = '';
+            } catch (err) {
+                errorMsg.textContent = err.message;
+                errorMsg.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
+

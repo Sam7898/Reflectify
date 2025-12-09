@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="teacher.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-left">
+            <img src="https://www.leanderisd.org/wp-content/uploads/2025/05/LEANDER✵ISD-Duotone-Blue-With-Tagline.png" alt="Leander ISD Logo" class="lisd-logo">
+        </div>
+        <div class="nav-right">
+            <a href="index.html" class="nav-link active">Home</a>
+            <a href="feedback.html" class="nav-link">View Feedback</a>
+            <div class="profile-dropdown">
+                <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="nav-icon" id="profileBtn">
+                <div class="dropdown-menu hide" id="profileMenu">
+                    <h3>Teacher Settings</h3>
+                    <button class="dropdown-item" id="themeToggle">Toggle Light/Dark Mode</button>
+                    <button class="dropdown-item" onclick="window.location.href='settings.html'">Settings</button>
+                    <button class="dropdown-item" onclick="sessionStorage.clear(); window.location.href='/'">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="app-header">
+        <h1 id="welcomeMsg">Welcome!</h1>
+        <p class="subtitle">Here's your teaching dashboard</p>
+    </header>
+
+    <div class="dashboard-grid">
+        <a href="feedback.html" class="dashboard-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3884/3884851.png" alt="Feedback">
+            <h2>View Feedback</h2>
+            <p>See what your students are saying</p>
+            <span class="card-badge" id="feedbackCount">0 new</span>
+        </a>
+
+        <div class="dashboard-card stats-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" alt="Stats">
+            <h2>Quick Stats</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-value" id="totalFeedback">0</span>
+                    <span class="stat-label">Total Feedback</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="positiveRatio">0%</span>
+                    <span class="stat-label">Positive Only</span>
+                </div>
+            </div>
+        </div>
+
+        <a href="settings.html" class="dashboard-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/2099/2099058.png" alt="Settings">
+            <h2>Settings</h2>
+            <p>Manage your profile</p>
+        </a>
+    </div>
+
+    <script src="teacher.js"></script>
+</body>
+</html>
+
