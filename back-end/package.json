@@ -1,8 +1,6 @@
 {
-  "name": "reflectify-backend",
+  "name": "reflectify",
   "version": "1.0.0",
-  "description": "Backend for student feedback app",
-  "type": "module",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
@@ -16,3 +14,4 @@
     "bcryptjs": "^2.4.3"
   }
 }
+
