@@ -104,6 +104,7 @@ function initForm() {
         studentForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
+            const user = JSON.parse(sessionStorage.getItem('user'));
             const teacher = document.getElementById('teacherSelect').value;
             const positive = document.getElementById('positiveFeedback').value.trim();
             const constructive = document.getElementById('constructiveFeedback').value.trim();
@@ -117,7 +118,14 @@ function initForm() {
                 const res = await fetch('http://localhost:3000/feedback', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ teacher, positive, constructive, timestamp: new Date().toISOString() })
+                    body: JSON.stringify({ 
+                        teacher, 
+                        positive, 
+                        constructive, 
+                        timestamp: new Date().toISOString(),
+                        studentName: user ? user.name : 'Anonymous',
+                        studentUsername: user ? user.username : null
+                    })
                 });
                 
                 if (!res.ok) throw new Error('Failed to submit feedback');
@@ -146,7 +154,16 @@ async function fetchAndRenderFeedback() {
     if (!feedbackContainer) return;
 
     try {
-        const res = await fetch('http://localhost:3000/feedback');
+        // Get the current user to fetch only their feedback
+        const user = JSON.parse(sessionStorage.getItem('user'));
+        
+        if (!user || !user.username) {
+            feedbackContainer.innerHTML = '<div class="empty">Please log in to view your submitted feedback.</div>';
+            return;
+        }
+
+        // Fetch only feedback submitted by this student
+        const res = await fetch(`http://localhost:3000/feedback/student/${encodeURIComponent(user.username)}`);
         allFeedbackData = await res.json();
         renderFeedbackList();
     } catch (err) {
@@ -164,8 +181,8 @@ function renderFeedbackList() {
         return;
     }
     
-    const sorted = [...allFeedbackData].reverse();
-    sorted.forEach(fb => {
+    // Data is already sorted newest first from the API
+    allFeedbackData.forEach(fb => {
         const card = document.createElement('div');
         card.className = 'feedback-card';
         card.innerHTML = `

@@ -190,6 +190,9 @@
         .teacher-name-group { display: none; }
         .teacher-name-group.show { display: block; }
 
+        .admin-code-group { display: none; }
+        .admin-code-group.show { display: block; }
+
         .form-row { display: flex; gap: 12px; }
         .form-row .form-group { flex: 1; }
     </style>
@@ -262,6 +265,10 @@
                         <option value="Madison">Madison</option>
                     </select>
                 </div>
+                <div class="form-group admin-code-group" id="adminCodeGroup">
+                    <label for="regAdminCode">Administrator Code</label>
+                    <input type="password" id="regAdminCode" placeholder="Enter admin authentication code">
+                </div>
                 <button type="submit" class="submit-btn" id="registerBtn">
                     <span class="spinner"></span>
                     <span class="btn-text">Create Account</span>
@@ -283,6 +290,8 @@
         const regRole = document.getElementById('regRole');
         const teacherNameGroup = document.getElementById('teacherNameGroup');
         const regTeacherName = document.getElementById('regTeacherName');
+        const adminCodeGroup = document.getElementById('adminCodeGroup');
+        const regAdminCode = document.getElementById('regAdminCode');
 
         // Tab switching
         tabBtns.forEach(btn => {
@@ -302,14 +311,24 @@
             });
         });
 
-        // Show/hide teacher name selection
+        // Show/hide teacher name and admin code selection
         regRole.addEventListener('change', () => {
+            // Teacher name field
             if (regRole.value === 'teacher') {
                 teacherNameGroup.classList.add('show');
                 regTeacherName.required = true;
             } else {
                 teacherNameGroup.classList.remove('show');
                 regTeacherName.required = false;
+            }
+            
+            // Admin code field
+            if (regRole.value === 'admin') {
+                adminCodeGroup.classList.add('show');
+                regAdminCode.required = true;
+            } else {
+                adminCodeGroup.classList.remove('show');
+                regAdminCode.required = false;
             }
         });
 
@@ -372,10 +391,17 @@
             const password = document.getElementById('regPassword').value;
             const role = document.getElementById('regRole').value;
             const teacherName = role === 'teacher' ? document.getElementById('regTeacherName').value : null;
+            const adminCode = role === 'admin' ? document.getElementById('regAdminCode').value : null;
             const registerBtn = document.getElementById('registerBtn');
 
             if (role === 'teacher' && !teacherName) {
                 errorMsg.textContent = 'Please select your teacher name';
+                errorMsg.classList.add('show');
+                return;
+            }
+
+            if (role === 'admin' && !adminCode) {
+                errorMsg.textContent = 'Administrator authentication code is required';
                 errorMsg.classList.add('show');
                 return;
             }
@@ -389,7 +415,7 @@
                 const response = await fetch('/api/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, password, role, name, teacherName })
+                    body: JSON.stringify({ username, password, role, name, teacherName, adminCode })
                 });
 
                 const data = await response.json();

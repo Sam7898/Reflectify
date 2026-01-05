@@ -173,10 +173,24 @@
         </div>
     </div>
 
+    <!-- Metrics Dropdown -->
+    <div class="chart-card" style="margin-bottom: 20px;">
+        <h2>Select Metric to Display</h2>
+        <p>Choose which data you want to visualize in the charts</p>
+        <div class="teacher-select-row">
+            <label for="metricFilter">Metric:</label>
+            <select id="metricFilter">
+                <option value="responses">Number of Responses</option>
+                <option value="positive">Number of Positive Feedback</option>
+                <option value="constructive">Number of Constructive Feedback</option>
+            </select>
+        </div>
+    </div>
+
     <!-- Main Chart -->
     <div class="chart-card">
-        <h2>Teacher Performance Over School Year</h2>
-        <p>Positive-only feedback ratio by period (higher is better)</p>
+        <h2 id="chartTitle">Teacher Performance Over School Year</h2>
+        <p id="chartSubtitle">Number of responses by period</p>
         
         <div class="teacher-select-row">
             <label for="teacherFilter">Filter by Teacher:</label>
@@ -189,14 +203,10 @@
             <canvas id="analyticsChart"></canvas>
         </div>
 
-        <div class="legend-info">
+        <div class="legend-info" id="legendInfo">
             <div class="legend-item">
                 <div class="legend-color" style="background: #0033A0;"></div>
-                <span>Positive-Only Rate (%)</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color" style="background: #FFB81C;"></div>
-                <span>Total Feedback Count</span>
+                <span id="legendText">Number of Responses</span>
             </div>
         </div>
     </div>
@@ -267,7 +277,8 @@
             teacherFilter.value = currentValue || 'all';
 
             // Build chart data
-            updateCharts(data, teacherFilter.value);
+            const metricFilter = document.getElementById('metricFilter');
+            updateCharts(data, teacherFilter.value, metricFilter.value);
 
             document.getElementById('lastUpdated').textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
         } catch (err) {
@@ -275,7 +286,33 @@
         }
     }
 
-    function updateCharts(data, selectedTeacher) {
+    function updateCharts(data, selectedTeacher, selectedMetric = 'responses') {
+        // Update chart titles based on metric
+        const chartTitle = document.getElementById('chartTitle');
+        const chartSubtitle = document.getElementById('chartSubtitle');
+        
+        const metricLabels = {
+            'responses': { title: 'Teacher Performance Over School Year', subtitle: 'Number of responses by period', yLabel: 'Number of Responses' },
+            'positive': { title: 'Positive Feedback Over School Year', subtitle: 'Number of positive-only feedback by period', yLabel: 'Positive Feedback Count' },
+            'constructive': { title: 'Constructive Feedback Over School Year', subtitle: 'Number of constructive feedback by period', yLabel: 'Constructive Feedback Count' }
+        };
+        
+        chartTitle.textContent = metricLabels[selectedMetric].title;
+        chartSubtitle.textContent = metricLabels[selectedMetric].subtitle;
+        
+        // Update legend
+        const legendText = document.getElementById('legendText');
+        const legendColor = document.querySelector('.legend-color');
+        if (legendText && legendColor) {
+            const legendConfig = {
+                'responses': { text: 'Number of Responses', color: '#0033A0' },
+                'positive': { text: 'Positive Feedback Count', color: '#22c55e' },
+                'constructive': { text: 'Constructive Feedback Count', color: '#f59e0b' }
+            };
+            legendText.textContent = legendConfig[selectedMetric].text;
+            legendColor.style.background = legendConfig[selectedMetric].color;
+        }
+
         // Main line chart
         const ctx = document.getElementById('analyticsChart').getContext('2d');
         
@@ -288,7 +325,13 @@
                 label: teacher,
                 data: periods.map(p => {
                     const period = teacherData.find(pd => pd.period === p);
-                    return period ? parseFloat(period.ratio) : 0;
+                    if (!period) return 0;
+                    switch (selectedMetric) {
+                        case 'responses': return period.total;
+                        case 'positive': return period.positiveOnly;
+                        case 'constructive': return period.withConstructive;
+                        default: return period.total;
+                    }
                 }),
                 borderColor: colors[index % colors.length],
                 backgroundColor: colors[index % colors.length] + '20',
@@ -317,17 +360,16 @@
                     },
                     tooltip: {
                         callbacks: {
-                            label: (context) => `${context.dataset.label}: ${context.raw}% positive-only`
+                            label: (context) => `${context.dataset.label}: ${context.raw} ${selectedMetric === 'responses' ? 'responses' : selectedMetric === 'positive' ? 'positive feedback' : 'constructive feedback'}`
                         }
                     }
                 },
                 scales: {
                     y: {
                         beginAtZero: true,
-                        max: 100,
                         title: {
                             display: true,
-                            text: 'Positive-Only Rate (%)'
+                            text: metricLabels[selectedMetric].yLabel
                         }
                     },
                     x: {
@@ -347,33 +389,48 @@
             const teacherData = data.analytics[teacher] || [];
             const totals = teacherData.reduce((acc, p) => acc + p.total, 0);
             const positiveOnly = teacherData.reduce((acc, p) => acc + p.positiveOnly, 0);
+            const withConstructive = teacherData.reduce((acc, p) => acc + p.withConstructive, 0);
             return {
                 teacher,
                 total: totals,
-                ratio: totals > 0 ? Math.round((positiveOnly / totals) * 100) : 0
+                positiveOnly,
+                withConstructive
             };
         });
 
         if (comparisonChart) comparisonChart.destroy();
 
+        // Build datasets based on selected metric
+        let barDatasets = [];
+        switch (selectedMetric) {
+            case 'responses':
+                barDatasets = [{
+                    label: 'Total Responses',
+                    data: comparisonData.map(d => d.total),
+                    backgroundColor: '#0033A0'
+                }];
+                break;
+            case 'positive':
+                barDatasets = [{
+                    label: 'Positive Feedback',
+                    data: comparisonData.map(d => d.positiveOnly),
+                    backgroundColor: '#22c55e'
+                }];
+                break;
+            case 'constructive':
+                barDatasets = [{
+                    label: 'Constructive Feedback',
+                    data: comparisonData.map(d => d.withConstructive),
+                    backgroundColor: '#f59e0b'
+                }];
+                break;
+        }
+
         comparisonChart = new Chart(ctx2, {
             type: 'bar',
             data: {
                 labels: comparisonData.map(d => d.teacher),
-                datasets: [
-                    {
-                        label: 'Total Feedback',
-                        data: comparisonData.map(d => d.total),
-                        backgroundColor: '#FFB81C',
-                        yAxisID: 'y1'
-                    },
-                    {
-                        label: 'Positive-Only Rate (%)',
-                        data: comparisonData.map(d => d.ratio),
-                        backgroundColor: '#0033A0',
-                        yAxisID: 'y'
-                    }
-                ]
+                datasets: barDatasets
             },
             options: {
                 responsive: true,
@@ -386,25 +443,10 @@
                 },
                 scales: {
                     y: {
-                        type: 'linear',
-                        position: 'left',
-                        beginAtZero: true,
-                        max: 100,
-                        title: {
-                            display: true,
-                            text: 'Positive-Only Rate (%)'
-                        }
-                    },
-                    y1: {
-                        type: 'linear',
-                        position: 'right',
                         beginAtZero: true,
                         title: {
                             display: true,
-                            text: 'Total Feedback'
-                        },
-                        grid: {
-                            drawOnChartArea: false
+                            text: metricLabels[selectedMetric].yLabel
                         }
                     }
                 }
@@ -412,11 +454,18 @@
         });
     }
 
-    // Filter change
+    // Filter change - teacher
     document.getElementById('teacherFilter').addEventListener('change', async () => {
         const res = await fetch('http://localhost:3000/feedback/analytics');
         const data = await res.json();
-        updateCharts(data, document.getElementById('teacherFilter').value);
+        updateCharts(data, document.getElementById('teacherFilter').value, document.getElementById('metricFilter').value);
+    });
+
+    // Filter change - metric
+    document.getElementById('metricFilter').addEventListener('change', async () => {
+        const res = await fetch('http://localhost:3000/feedback/analytics');
+        const data = await res.json();
+        updateCharts(data, document.getElementById('teacherFilter').value, document.getElementById('metricFilter').value);
     });
 
     // Initial load
