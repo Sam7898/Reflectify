@@ -115,7 +115,7 @@ function initForm() {
             }
 
             try {
-                const res = await fetch('http://localhost:3000/feedback', {
+                const res = await fetch('https://reflectify-6h6q.onrender.com/feedback', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
@@ -163,7 +163,7 @@ async function fetchAndRenderFeedback() {
         }
 
         // Fetch only feedback submitted by this student
-        const res = await fetch(`http://localhost:3000/feedback/student/${encodeURIComponent(user.username)}`);
+        const res = await fetch(`https://reflectify-6h6q.onrender.com/feedback/student/${encodeURIComponent(user.username)}`);
         allFeedbackData = await res.json();
         renderFeedbackList();
     } catch (err) {

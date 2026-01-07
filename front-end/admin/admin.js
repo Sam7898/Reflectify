@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalTimestamp = document.getElementById("modalTimestamp");
     const modalClose = document.querySelector(".close");
   
-    const API_URL = "http://localhost:3000/feedback";
+    const API_URL = "https://reflectify-6h6q.onrender.com/feedback";
     let allFeedbackData = [];
   
     async function fetchAndRenderFeedback() {

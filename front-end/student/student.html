@@ -3,8 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Student Feedback</title>
+<title>Student Feedback - Reflectify</title>
 <link rel="stylesheet" href="student.css">
+<style>
+    .hero-section {
+        width: 92%;
+        max-width: 800px;
+        margin: 0 auto 28px;
+        background: var(--card-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 28px;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        box-shadow: var(--glass-shadow);
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--blue), var(--gold));
+        border-radius: 20px 20px 0 0;
+    }
+
+    .hero-image {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        flex-shrink: 0;
+    }
+
+    .hero-text h3 {
+        color: var(--text-primary);
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    body.light-mode .hero-text h3 {
+        color: var(--blue);
+    }
+
+    .hero-text p {
+        color: var(--text-secondary);
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    @media (max-width: 600px) {
+        .hero-section {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+</style>
 </head>
 <body>
 
@@ -34,21 +96,48 @@
         <h1 id="welcomeMsg">Submit Feedback</h1>
     </header>
 
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <img src="https://cdn-icons-png.flaticon.com/512/3884/3884851.png" alt="Feedback" class="hero-image">
+        <div class="hero-text">
+            <h3>📝 Share Your Learning Experience</h3>
+            <p>Your feedback helps teachers understand what works well and what can be improved. Be specific and constructive to make the most impact!</p>
+        </div>
+    </div>
+
     <div class="container">
         <div class="feedback-form card-list">
             <div class="feedback-card">
                 <div class="card-top">
-                    <span class="teacher">Share Your Thoughts</span>
+                    <span class="teacher">✨ Share Your Thoughts</span>
                 </div>
                 <form id="studentForm">
                     <div class="form-group teacher-select-group">
                         <label for="teacherSelect"><strong>Select Teacher:</strong></label>
                         <select id="teacherSelect" required>
                             <option value="" disabled selected>Choose a teacher</option>
-                            <option value="John">John</option>
-                            <option value="Archit">Archit</option>
-                            <option value="Sam">Sam</option>
-                            <option value="Madison">Madison</option>
+                            <!-- Archit Admin's Teachers -->
+                            <option value="Mr. Anderson">Mr. Anderson</option>
+                            <option value="Ms. Baker">Ms. Baker</option>
+                            <option value="Mr. Chen">Mr. Chen</option>
+                            <option value="Ms. Davis">Ms. Davis</option>
+                            <option value="Mr. Edwards">Mr. Edwards</option>
+                            <option value="Ms. Foster">Ms. Foster</option>
+                            <option value="Mr. Garcia">Mr. Garcia</option>
+                            <option value="Ms. Harris">Ms. Harris</option>
+                            <option value="Mr. Ibrahim">Mr. Ibrahim</option>
+                            <option value="Ms. Johnson">Ms. Johnson</option>
+                            <!-- Samarth Admin's Teachers -->
+                            <option value="Mr. Kumar">Mr. Kumar</option>
+                            <option value="Ms. Lee">Ms. Lee</option>
+                            <option value="Mr. Martinez">Mr. Martinez</option>
+                            <option value="Ms. Nelson">Ms. Nelson</option>
+                            <option value="Mr. O'Brien">Mr. O'Brien</option>
+                            <option value="Ms. Patel">Ms. Patel</option>
+                            <option value="Mr. Quinn">Mr. Quinn</option>
+                            <option value="Ms. Rodriguez">Ms. Rodriguez</option>
+                            <option value="Mr. Smith">Mr. Smith</option>
+                            <option value="Ms. Thompson">Ms. Thompson</option>
                         </select>
                     </div>
 

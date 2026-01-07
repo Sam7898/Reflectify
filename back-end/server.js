@@ -309,5 +309,49 @@ app.delete("/feedback", async (req, res) => {
   }
 });
 
+// ---------------- USER MANAGEMENT (ADMIN ONLY) ----------------
+
+// Get all users (for admin)
+app.get("/api/users", async (req, res) => {
+  try {
+    const users = await User.find({}, { passwordHash: 0 }); // Exclude password hashes
+    res.json(users);
+  } catch (err) {
+    console.error("Get users error:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+// Delete a user (admin only - can only delete students and teachers)
+app.delete("/api/users/:username", async (req, res) => {
+  try {
+    const { username } = req.params;
+    const { adminUsername } = req.body;
+    
+    // Verify the requesting user is an admin
+    const admin = await User.findOne({ username: adminUsername });
+    if (!admin || admin.role !== "admin") {
+      return res.status(403).json({ message: "Only administrators can delete accounts" });
+    }
+    
+    // Find the user to delete
+    const userToDelete = await User.findOne({ username });
+    if (!userToDelete) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    
+    // Prevent deleting admin accounts
+    if (userToDelete.role === "admin") {
+      return res.status(403).json({ message: "Cannot delete administrator accounts" });
+    }
+    
+    await User.deleteOne({ username });
+    res.json({ message: `User ${username} deleted successfully` });
+  } catch (err) {
+    console.error("Delete user error:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 // ---------------- START SERVER ----------------
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

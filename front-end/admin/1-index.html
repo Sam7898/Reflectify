@@ -2,70 +2,268 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Admin Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Home - Reflectify</title>
 <link rel="stylesheet" href="admin.css">
+<style>
+    .hero-banner {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto 30px;
+        background: var(--card-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        padding: 40px;
+        box-shadow: var(--glass-shadow);
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .hero-banner::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, var(--blue), var(--gold), var(--blue));
+    }
+
+    .hero-image {
+        width: 200px;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 16px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        flex-shrink: 0;
+    }
+
+    .hero-content h2 {
+        font-size: 26px;
+        color: var(--text-primary);
+        margin-bottom: 12px;
+        font-weight: 700;
+    }
+
+    body.light-mode .hero-content h2 {
+        color: var(--blue);
+    }
+
+    .hero-content p {
+        color: var(--text-secondary);
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 8px;
+    }
+
+    .hero-stats {
+        display: flex;
+        gap: 32px;
+        margin-top: 20px;
+    }
+
+    .hero-stat {
+        text-align: center;
+    }
+
+    .hero-stat-value {
+        font-size: 28px;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--blue), #3366cc);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .hero-stat-label {
+        font-size: 12px;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .quick-actions {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto 30px;
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+    }
+
+    .quick-action-btn {
+        padding: 12px 24px;
+        background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: inherit;
+    }
+
+    .quick-action-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0, 51, 160, 0.35);
+    }
+
+    .quick-action-btn.secondary {
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        color: var(--text-primary);
+    }
+
+    .quick-action-btn.secondary:hover {
+        background: var(--blue);
+        color: white;
+        border-color: var(--blue);
+    }
+
+    @media (max-width: 768px) {
+        .hero-banner {
+            flex-direction: column;
+            text-align: center;
+            padding: 28px;
+        }
+        .hero-image {
+            width: 100%;
+            max-width: 280px;
+            height: 160px;
+        }
+        .hero-stats {
+            justify-content: center;
+        }
+    }
+</style>
 </head>
 <body>
 
-    <nav class="top-nav">
-        <div class="nav-left">
-          <img src="https://www.leanderisd.org/wp-content/uploads/2025/05/LEANDER✵ISD-Duotone-Blue-With-Tagline.png"
-               class="lisd-logo">
-        </div>
-      
-        <div class="nav-right">
-          <a href="1-index.html" class="nav-link">Home</a>
-          <a href="2-admin-analytics.html" class="nav-link">Analytics</a>
-          <a href="3-admin-feedback.html" class="nav-link">Feedback Dashboard</a>
-      
-          <div class="profile-dropdown">
-            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
-                 class="nav-icon" id="profileBtn">
+<nav class="top-nav">
+    <div class="nav-left">
+        <img src="https://www.leanderisd.org/wp-content/uploads/2025/05/LEANDER✵ISD-Duotone-Blue-With-Tagline.png" class="lisd-logo">
+    </div>
+    <div class="nav-right">
+        <a href="1-index.html" class="nav-link active">Home</a>
+        <a href="2-admin-analytics.html" class="nav-link">Analytics</a>
+        <a href="3-admin-feedback.html" class="nav-link">Feedback</a>
+        <a href="4-admin-accounts.html" class="nav-link">Accounts</a>
+        <div class="profile-dropdown">
+            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="nav-icon" id="profileBtn">
             <div class="dropdown-menu hide" id="profileMenu">
-              <h3>Admin Settings</h3>
-              <button class="dropdown-item" id="themeToggle">Toggle Light/Dark Mode</button>
-              <button class="dropdown-item" onclick="window.location.href='settings.html'">Settings</button>
-              <button class="dropdown-item" onclick="sessionStorage.clear(); window.location.href='/'">Logout</button>
+                <h3>Admin Settings</h3>
+                <button class="dropdown-item" id="themeToggle">Toggle Light/Dark Mode</button>
+                <button class="dropdown-item" onclick="window.location.href='settings.html'">Settings</button>
+                <button class="dropdown-item" onclick="sessionStorage.clear(); window.location.href='/'">Logout</button>
             </div>
-          </div>
         </div>
-      </nav>
+    </div>
+</nav>
 
 <header class="app-header">
     <h1 id="welcomeMsg">Admin Portal</h1>
 </header>
 
-<div class="dashboard-grid">
+<!-- Hero Banner -->
+<div class="hero-banner">
+    <img src="https://www.leanderisd.org/wp-content/uploads/2025/04/LISD-Home-Enroll-Now.jpg" alt="Leander ISD" class="hero-image">
+    <div class="hero-content">
+        <h2>📊 Reflectify Admin Dashboard</h2>
+        <p>Welcome to the administrator control center. Monitor student feedback, analyze teacher performance metrics, and manage user accounts across Leander ISD.</p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-value" id="statFeedback">--</div>
+                <div class="hero-stat-label">Total Feedback</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value" id="statTeachers">20</div>
+                <div class="hero-stat-label">Teachers</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value" id="statActive">--</div>
+                <div class="hero-stat-label">Active Users</div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- Quick Actions -->
+<div class="quick-actions">
+    <a href="2-admin-analytics.html" class="quick-action-btn">📈 View Analytics</a>
+    <a href="3-admin-feedback.html" class="quick-action-btn secondary">💬 Review Feedback</a>
+    <a href="4-admin-accounts.html" class="quick-action-btn secondary">👥 Manage Accounts</a>
+</div>
+
+<div class="dashboard-grid">
     <!-- Analytics -->
     <a href="2-admin-analytics.html" class="dashboard-card">
-        <img id="analytics-img" src="https://cdn-icons-png.flaticon.com/512/716/716784.png">
-        <h2>Analytics</h2>
-        <p>View data, metrics, and insights.</p>
+        <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" alt="Analytics">
+        <h2>📊 Analytics</h2>
+        <p>View data, metrics, and performance insights across all teachers.</p>
     </a>
 
     <!-- Feedback Dashboard -->
     <a href="3-admin-feedback.html" class="dashboard-card">
-        <img src="https://cdn-icons-png.flaticon.com/512/3884/3884851.png">
-        <h2>Feedback Dashboard</h2>
-        <p>Review all student feedback.</p>
+        <img src="https://cdn-icons-png.flaticon.com/512/3884/3884851.png" alt="Feedback">
+        <h2>💬 Feedback Dashboard</h2>
+        <p>Review and manage all student feedback submissions.</p>
+    </a>
+
+    <!-- Account Management -->
+    <a href="4-admin-accounts.html" class="dashboard-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Accounts">
+        <h2>👥 Account Management</h2>
+        <p>View and delete student & teacher accounts.</p>
     </a>
 
     <!-- Settings -->
     <a href="settings.html" class="dashboard-card">
-        <img src="https://cdn-icons-png.flaticon.com/512/2099/2099058.png">
-        <h2>Settings</h2>
-        <p>Manage your profile.</p>
+        <img src="https://cdn-icons-png.flaticon.com/512/2099/2099058.png" alt="Settings">
+        <h2>⚙️ Settings</h2>
+        <p>Manage your admin profile and preferences.</p>
     </a>
-
 </div>
+
 <script src="admin.js"></script>
 <script>
-    // Set welcome message
     const user = JSON.parse(sessionStorage.getItem('user'));
     if (user && user.name) {
         document.getElementById('welcomeMsg').textContent = `Welcome, ${user.name}!`;
     }
+
+    // Load quick stats
+    async function loadStats() {
+        try {
+            const [feedbackRes, usersRes] = await Promise.all([
+                fetch('https://reflectify-6h6q.onrender.com/feedback/analytics'),
+                fetch('https://reflectify-6h6q.onrender.com/api/users')
+            ]);
+            
+            const feedbackData = await feedbackRes.json();
+            const usersData = await usersRes.json();
+            
+            document.getElementById('statFeedback').textContent = feedbackData.totalFeedback || 0;
+            document.getElementById('statTeachers').textContent = feedbackData.teachers?.length || 0;
+            document.getElementById('statActive').textContent = usersData?.length || 0;
+        } catch (err) {
+            console.error('Failed to load stats:', err);
+        }
+    }
+    
+    loadStats();
 </script>
 </body>
 </html>

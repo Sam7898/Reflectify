@@ -73,7 +73,7 @@ async function loadStats() {
     if (!user || !user.teacherName) return;
 
     try {
-        const res = await fetch(`http://localhost:3000/feedback/teacher/${user.teacherName}`);
+        const res = await fetch(`https://reflectify-6h6q.onrender.com/feedback/teacher/${user.teacherName}`);
         const data = await res.json();
 
         const feedbackCount = document.getElementById('feedbackCount');

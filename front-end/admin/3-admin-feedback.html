@@ -2,52 +2,115 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Admin Feedback Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback Dashboard - Reflectify</title>
 <link rel="stylesheet" href="admin.css">
+<style>
+    .feedback-header-card {
+        width: 92%;
+        max-width: 1100px;
+        margin: 0 auto 28px;
+        background: var(--card-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 28px;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        box-shadow: var(--glass-shadow);
+        position: relative;
+        z-index: 1;
+    }
+
+    .feedback-header-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--blue), var(--gold));
+        border-radius: 20px 20px 0 0;
+    }
+
+    .feedback-header-card img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .feedback-header-text h3 {
+        color: var(--text-primary);
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    body.light-mode .feedback-header-text h3 {
+        color: var(--blue);
+    }
+
+    .feedback-header-text p {
+        color: var(--text-secondary);
+        font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+        .feedback-header-card {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+</style>
 </head>
 <body>
 
-    <nav class="top-nav">
-        <div class="nav-left">
-          <img src="https://www.leanderisd.org/wp-content/uploads/2025/05/LEANDER✵ISD-Duotone-Blue-With-Tagline.png"
-               class="lisd-logo">
-        </div>
-      
-        <div class="nav-right">
-          <a href="1-index.html" class="nav-link">Home</a>
-          <a href="2-admin-analytics.html" class="nav-link">Analytics</a>
-          <a href="3-admin-feedback.html" class="nav-link">Feedback Dashboard</a>
-      
-          <div class="profile-dropdown">
-            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
-                 class="nav-icon" id="profileBtn">
+<nav class="top-nav">
+    <div class="nav-left">
+        <img src="https://www.leanderisd.org/wp-content/uploads/2025/05/LEANDER✵ISD-Duotone-Blue-With-Tagline.png" class="lisd-logo">
+    </div>
+    <div class="nav-right">
+        <a href="1-index.html" class="nav-link">Home</a>
+        <a href="2-admin-analytics.html" class="nav-link">Analytics</a>
+        <a href="3-admin-feedback.html" class="nav-link active">Feedback</a>
+        <a href="4-admin-accounts.html" class="nav-link">Accounts</a>
+        <div class="profile-dropdown">
+            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="nav-icon" id="profileBtn">
             <div class="dropdown-menu hide" id="profileMenu">
-              <h3>Admin Settings</h3>
-              <button class="dropdown-item" id="themeToggle">Toggle Light/Dark Mode</button>
-              <button class="dropdown-item" onclick="window.location.href='settings.html'">Settings</button>
-              <button class="dropdown-item" onclick="sessionStorage.clear(); window.location.href='/'">Logout</button>
+                <h3>Admin Settings</h3>
+                <button class="dropdown-item" id="themeToggle">Toggle Light/Dark Mode</button>
+                <button class="dropdown-item" onclick="window.location.href='settings.html'">Settings</button>
+                <button class="dropdown-item" onclick="sessionStorage.clear(); window.location.href='/'">Logout</button>
             </div>
-          </div>
         </div>
-      </nav>
+    </div>
+</nav>
 
 <header class="app-header">
-    <h1>Admin Feedback Dashboard</h1>
+    <h1>💬 Feedback Dashboard</h1>
 </header>
 
-<div class="container">
+<!-- Header Card -->
+<div class="feedback-header-card">
+    <img src="https://cdn-icons-png.flaticon.com/512/3884/3884851.png" alt="Feedback">
+    <div class="feedback-header-text">
+        <h3>📋 Student Feedback Review</h3>
+        <p>View and manage all student feedback submissions. Filter by teacher to see specific feedback, or clear all to start fresh.</p>
+    </div>
+</div>
 
+<div class="container">
     <div class="controls">
         <select id="teacherFilter">
             <option value="all">All Teachers</option>
         </select>
-
-        <button class="primary" id="refreshBtn">⟳ Refresh</button>
-        <button class="warn" id="clearBtn">Clear All</button>
+        <button class="primary" id="refreshBtn">🔄 Refresh</button>
+        <button class="warn" id="clearBtn">🗑️ Clear All</button>
     </div>
 
     <div id="feedbackList" class="card-list"></div>
-
 </div>
 
 <div id="feedbackModal" class="modal hide">

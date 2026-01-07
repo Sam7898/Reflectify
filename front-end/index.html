@@ -9,36 +9,81 @@
         :root {
             --blue: #0033A0;
             --blue-dark: #002679;
+            --blue-light: #3366cc;
             --gold: #FFB81C;
+            --gold-light: #ffd666;
             --bg-dark: #0e1c45;
-            --bg-card: rgba(255, 255, 255, 0.95);
-            --text-primary: #1a1a1a;
-            --text-secondary: #555;
-            --border: #ddd;
-            --error: #e53935;
+            --bg-card: rgba(255, 255, 255, 0.12);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-muted: rgba(255, 255, 255, 0.6);
+            --border: rgba(255, 255, 255, 0.3);
+            --error: #ef4444;
             --success: #22c55e;
+            --input-bg: rgba(255, 255, 255, 0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0033A0 0%, #0e1c45 100%);
+            background: linear-gradient(135deg, #0a1628 0%, #1a2744 50%, #0d1b2a 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .login-container { width: 100%; max-width: 440px; }
+        /* Background decorative effects */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -40%;
+            right: -20%;
+            width: 70%;
+            height: 70%;
+            background: radial-gradient(circle, rgba(0, 51, 160, 0.3) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -30%;
+            left: -15%;
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(circle, rgba(255, 184, 28, 0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .login-container { width: 100%; max-width: 460px; position: relative; z-index: 10; }
 
         .login-card {
             background: var(--bg-card);
-            border-radius: 20px;
-            padding: 36px 32px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
-            animation: slideUp 0.5s ease-out;
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            padding: 44px 36px;
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--blue), var(--gold), var(--blue));
         }
 
         @keyframes slideUp {
@@ -46,128 +91,166 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .logo-section { text-align: center; margin-bottom: 24px; }
+        .logo-section { text-align: center; margin-bottom: 28px; }
 
         .logo {
-            width: 64px;
-            height: 64px;
+            width: 72px;
+            height: 72px;
             background: linear-gradient(135deg, var(--blue), var(--blue-dark));
-            border-radius: 14px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 12px;
-            font-size: 28px;
+            margin: 0 auto 14px;
+            font-size: 32px;
+            box-shadow: 0 8px 25px rgba(0, 51, 160, 0.4);
         }
 
-        .logo-section h1 { font-size: 24px; font-weight: 700; color: var(--blue); margin-bottom: 4px; }
-        .logo-section p { color: var(--text-secondary); font-size: 13px; }
+        .logo-section h1 { 
+            font-size: 28px; 
+            font-weight: 700; 
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px; 
+        }
+        .logo-section p { color: var(--text-muted); font-size: 14px; }
 
         .tab-toggle {
             display: flex;
-            background: #f0f0f0;
-            border-radius: 10px;
-            padding: 4px;
-            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            padding: 5px;
+            margin-bottom: 24px;
         }
 
         .tab-btn {
             flex: 1;
-            padding: 10px;
+            padding: 12px;
             border: none;
             background: transparent;
-            border-radius: 8px;
-            font-size: 13px;
+            border-radius: 10px;
+            font-size: 14px;
             font-weight: 600;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             cursor: pointer;
             transition: all 0.25s ease;
             font-family: inherit;
         }
 
-        .tab-btn.active {
-            background: var(--blue);
-            color: white;
-            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.3);
+        .tab-btn:hover {
+            color: var(--text-primary);
         }
 
-        .form-group { margin-bottom: 14px; }
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+            color: white;
+            box-shadow: 0 6px 20px rgba(0, 51, 160, 0.4);
+        }
+
+        .form-group { margin-bottom: 18px; }
         .form-group label {
             display: block;
             color: var(--text-secondary);
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
         }
 
         .form-group input,
         .form-group select {
             width: 100%;
-            padding: 12px 14px;
-            background: #f5f5f5;
+            padding: 14px 16px;
+            background: var(--input-bg);
             border: 1px solid var(--border);
-            border-radius: 10px;
+            border-radius: 12px;
             color: var(--text-primary);
-            font-size: 14px;
+            font-size: 15px;
             font-family: inherit;
             transition: all 0.25s ease;
+        }
+
+        .form-group input::placeholder {
+            color: var(--text-muted);
         }
 
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
             border-color: var(--blue);
-            box-shadow: 0 0 0 3px rgba(0, 51, 160, 0.15);
-            background: white;
+            box-shadow: 0 0 0 3px rgba(0, 51, 160, 0.3);
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .form-group select {
             cursor: pointer;
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23555' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
-            background-position: right 14px center;
+            background-position: right 16px center;
+        }
+
+        .form-group select option {
+            background: #1a2744;
+            color: white;
         }
 
         .submit-btn {
             width: 100%;
-            padding: 14px;
+            padding: 16px;
             background: linear-gradient(135deg, var(--blue), var(--blue-dark));
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             color: white;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 600;
             font-family: inherit;
             cursor: pointer;
             transition: all 0.25s ease;
-            margin-top: 6px;
+            margin-top: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
+            box-shadow: 0 6px 20px rgba(0, 51, 160, 0.3);
         }
 
         .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 51, 160, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 51, 160, 0.5);
         }
 
-        .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
 
         .error-message, .success-message {
-            padding: 10px 14px;
-            border-radius: 8px;
-            font-size: 13px;
-            margin-bottom: 14px;
+            padding: 14px 18px;
+            border-radius: 12px;
+            font-size: 14px;
+            margin-bottom: 18px;
             display: none;
+            backdrop-filter: blur(10px);
         }
 
-        .error-message { background: rgba(229, 57, 53, 0.1); border: 1px solid rgba(229, 57, 53, 0.3); color: var(--error); }
-        .success-message { background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); color: var(--success); }
-        .error-message.show, .success-message.show { display: block; }
+        .error-message { 
+            background: rgba(239, 68, 68, 0.15); 
+            border: 1px solid rgba(239, 68, 68, 0.4); 
+            color: #fca5a5;
+        }
+        .success-message { 
+            background: rgba(34, 197, 94, 0.15); 
+            border: 1px solid rgba(34, 197, 94, 0.4); 
+            color: #86efac;
+        }
+        .error-message.show, .success-message.show { display: block; animation: fadeIn 0.3s ease; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         .spinner {
             display: none;
@@ -182,7 +265,17 @@
         @keyframes spin { to { transform: rotate(360deg); } }
         .submit-btn.loading .spinner { display: inline-block; }
 
-        .lisd-logo { max-width: 160px; margin-top: 16px; opacity: 0.9; }
+        .lisd-logo { 
+            max-width: 180px; 
+            margin-top: 20px; 
+            opacity: 0.85;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+            transition: opacity 0.2s ease;
+        }
+
+        .lisd-logo:hover {
+            opacity: 1;
+        }
 
         .form-section { display: none; }
         .form-section.active { display: block; }
@@ -259,10 +352,28 @@
                     <label for="regTeacherName">Your Teacher Name</label>
                     <select id="regTeacherName">
                         <option value="" disabled selected>Select your name</option>
-                        <option value="John">John</option>
-                        <option value="Archit">Archit</option>
-                        <option value="Sam">Sam</option>
-                        <option value="Madison">Madison</option>
+                        <!-- Archit Admin's Teachers -->
+                        <option value="Mr. Anderson">Mr. Anderson</option>
+                        <option value="Ms. Baker">Ms. Baker</option>
+                        <option value="Mr. Chen">Mr. Chen</option>
+                        <option value="Ms. Davis">Ms. Davis</option>
+                        <option value="Mr. Edwards">Mr. Edwards</option>
+                        <option value="Ms. Foster">Ms. Foster</option>
+                        <option value="Mr. Garcia">Mr. Garcia</option>
+                        <option value="Ms. Harris">Ms. Harris</option>
+                        <option value="Mr. Ibrahim">Mr. Ibrahim</option>
+                        <option value="Ms. Johnson">Ms. Johnson</option>
+                        <!-- Samarth Admin's Teachers -->
+                        <option value="Mr. Kumar">Mr. Kumar</option>
+                        <option value="Ms. Lee">Ms. Lee</option>
+                        <option value="Mr. Martinez">Mr. Martinez</option>
+                        <option value="Ms. Nelson">Ms. Nelson</option>
+                        <option value="Mr. O'Brien">Mr. O'Brien</option>
+                        <option value="Ms. Patel">Ms. Patel</option>
+                        <option value="Mr. Quinn">Mr. Quinn</option>
+                        <option value="Ms. Rodriguez">Ms. Rodriguez</option>
+                        <option value="Mr. Smith">Mr. Smith</option>
+                        <option value="Ms. Thompson">Ms. Thompson</option>
                     </select>
                 </div>
                 <div class="form-group admin-code-group" id="adminCodeGroup">
