@@ -29,16 +29,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const profileBtn = document.getElementById("profileBtn");
     const profileMenu = document.getElementById("profileMenu");
   
-    profileBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      profileMenu.classList.toggle("show");
-    });
-  
-    document.addEventListener("click", (e) => {
-      if (!profileMenu.contains(e.target) && e.target !== profileBtn) {
-        profileMenu.classList.remove("show");
-      }
-    });
+    if (profileBtn && profileMenu) {
+      // Start hidden
+      profileMenu.classList.add("hide");
+      profileMenu.classList.remove("show");
+
+      profileBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isVisible = profileMenu.classList.contains("show");
+        if (isVisible) {
+          profileMenu.classList.remove("show");
+          profileMenu.classList.add("hide");
+        } else {
+          profileMenu.classList.add("show");
+          profileMenu.classList.remove("hide");
+        }
+      });
+    
+      document.addEventListener("click", (e) => {
+        if (!profileMenu.contains(e.target) && e.target !== profileBtn) {
+          profileMenu.classList.remove("show");
+          profileMenu.classList.add("hide");
+        }
+      });
+    }
   
     // -----------------------
     // FEEDBACK DASHBOARD

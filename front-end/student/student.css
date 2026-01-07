@@ -1,12 +1,12 @@
 /* ============================================
    REFLECTIFY STUDENT PORTAL
-   Liquid Glass UI Design
+   Clean LISD Theme - Blue & Gold
    ============================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-    /* Core Colors */
+    /* Core LISD Colors */
     --blue: #0033A0;
     --blue-dark: #001f66;
     --blue-light: #3366cc;
@@ -14,33 +14,32 @@
     --gold-light: #ffd666;
     
     /* Dark Mode (Default) */
-    --bg-primary: linear-gradient(135deg, #0a1628 0%, #1a2744 50%, #0d1b2a 100%);
-    --glass-bg: rgba(255, 255, 255, 0.08);
-    --glass-border: rgba(255, 255, 255, 0.15);
-    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --bg-primary: linear-gradient(135deg, #0033A0 0%, #0e1c45 100%);
+    --glass-bg: rgba(255, 255, 255, 0.12);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     --text-primary: #ffffff;
-    --text-secondary: rgba(255, 255, 255, 0.7);
-    --text-muted: rgba(255, 255, 255, 0.5);
+    --text-secondary: rgba(255, 255, 255, 0.85);
+    --text-muted: rgba(255, 255, 255, 0.6);
     --card-bg: rgba(255, 255, 255, 0.1);
     --nav-bg: rgba(0, 0, 0, 0.25);
-    --input-bg: rgba(255, 255, 255, 0.1);
+    --input-bg: rgba(255, 255, 255, 0.12);
     
-    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.15);
-    --border-radius: 20px;
-    --border-radius-sm: 12px;
+    --border-radius: 16px;
+    --border-radius-sm: 10px;
 }
 
-/* Light Mode - Liquid Glass */
+/* Light Mode */
 body.light-mode {
-    --bg-primary: linear-gradient(135deg, #e8f0ff 0%, #f5f7fa 50%, #e0e8f5 100%);
-    --glass-bg: rgba(255, 255, 255, 0.6);
-    --glass-border: rgba(255, 255, 255, 0.8);
+    --bg-primary: linear-gradient(135deg, #f0f4fa 0%, #e8eef5 100%);
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(0, 51, 160, 0.15);
     --glass-shadow: 0 8px 32px rgba(0, 51, 160, 0.1);
     --text-primary: #1a1a2e;
     --text-secondary: #444;
     --text-muted: #666;
-    --card-bg: rgba(255, 255, 255, 0.7);
-    --nav-bg: rgba(255, 255, 255, 0.85);
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --nav-bg: rgba(255, 255, 255, 0.9);
     --input-bg: rgba(255, 255, 255, 0.9);
 }
 
@@ -52,40 +51,6 @@ html, body {
     background: var(--bg-primary);
     color: var(--text-primary);
     background-attachment: fixed;
-    overflow-x: hidden;
-}
-
-/* Background Effects */
-body::before {
-    content: '';
-    position: fixed;
-    top: -50%;
-    right: -30%;
-    width: 80%;
-    height: 80%;
-    background: radial-gradient(circle, rgba(0, 51, 160, 0.15) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 0;
-}
-
-body::after {
-    content: '';
-    position: fixed;
-    bottom: -30%;
-    left: -20%;
-    width: 60%;
-    height: 60%;
-    background: radial-gradient(circle, rgba(255, 184, 28, 0.1) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 0;
-}
-
-body.light-mode::before {
-    background: radial-gradient(circle, rgba(0, 51, 160, 0.08) 0%, transparent 60%);
-}
-
-body.light-mode::after {
-    background: radial-gradient(circle, rgba(255, 184, 28, 0.08) 0%, transparent 60%);
 }
 
 /* ============================================
@@ -104,20 +69,13 @@ body.light-mode::after {
     top: 0; 
     z-index: 2000; 
     border-bottom: 1px solid var(--glass-border);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-}
-
-body.light-mode .top-nav {
-    border-bottom: 1px solid rgba(0, 51, 160, 0.1);
 }
 
 .nav-left { display: flex; align-items: center; }
 .lisd-logo { 
     height: 42px; 
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); 
-    transition: transform 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15)); 
 }
-.lisd-logo:hover { transform: scale(1.02); }
 
 .nav-right { display: flex; gap: 8px; align-items: center; }
 
@@ -126,17 +84,17 @@ body.light-mode .top-nav {
     font-size: 14px; 
     font-weight: 500; 
     text-decoration: none; 
-    padding: 10px 18px; 
+    padding: 10px 16px; 
     border-radius: var(--border-radius-sm);
-    transition: all 0.25s ease;
+    transition: all 0.2s ease;
 }
 
 .nav-link:hover { background: var(--glass-bg); }
 
 .nav-link.active { 
-    background: var(--blue);
-    color: white;
-    box-shadow: 0 4px 15px rgba(0, 51, 160, 0.3);
+    background: var(--gold);
+    color: #1a1a1a;
+    font-weight: 600;
 }
 
 /* ============================================
@@ -145,38 +103,35 @@ body.light-mode .top-nav {
 .profile-dropdown { position: relative; }
 
 .nav-icon { 
-    width: 40px; 
-    height: 40px; 
+    width: 38px; 
+    height: 38px; 
     margin-left: 12px; 
     cursor: pointer; 
     border-radius: 50%; 
     background: white; 
     padding: 3px;
-    transition: all 0.25s ease;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
-.nav-icon:hover { 
-    transform: scale(1.1);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-}
+.nav-icon:hover { transform: scale(1.08); }
 
 .dropdown-menu {
     position: absolute;
-    top: 54px;
+    top: 50px;
     right: 0;
-    width: 240px;
+    width: 220px;
     background: var(--card-bg);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    padding: 18px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.25);
     opacity: 0;
-    pointer-events: none;
-    transform: translateY(-10px);
-    transition: all 0.25s ease;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.2s ease;
     z-index: 10000;
 }
 
@@ -184,15 +139,15 @@ body.light-mode .dropdown-menu {
     background: rgba(255, 255, 255, 0.95);
 }
 
-.dropdown-menu.show { opacity: 1; pointer-events: all; transform: translateY(0); }
-.dropdown-menu.hide { opacity: 0; pointer-events: none; }
+.dropdown-menu.show { opacity: 1; visibility: visible; transform: translateY(0); }
+.dropdown-menu.hide { opacity: 0; visibility: hidden; }
 
 .dropdown-menu h3 { 
-    margin: 0 0 14px; 
-    font-size: 16px; 
+    margin: 0 0 12px; 
+    font-size: 15px; 
     font-weight: 700; 
     color: var(--text-primary);
-    padding-bottom: 12px;
+    padding-bottom: 10px;
     border-bottom: 1px solid var(--glass-border);
 }
 
@@ -202,11 +157,11 @@ body.light-mode .dropdown-menu h3 {
 
 .dropdown-item {
     width: 100%;
-    padding: 12px 14px;
+    padding: 11px 14px;
     border: none;
     background: var(--glass-bg);
-    border-radius: 10px;
-    margin: 6px 0;
+    border-radius: 8px;
+    margin: 5px 0;
     cursor: pointer;
     text-align: left;
     font-size: 14px;
@@ -216,9 +171,8 @@ body.light-mode .dropdown-menu h3 {
 }
 
 .dropdown-item:hover { 
-    background: var(--blue);
-    color: white;
-    transform: translateX(4px);
+    background: var(--gold);
+    color: #1a1a1a;
 }
 
 /* ============================================
@@ -226,26 +180,18 @@ body.light-mode .dropdown-menu h3 {
    ============================================ */
 .app-header { 
     text-align: center; 
-    padding: 50px 20px 30px;
-    position: relative;
-    z-index: 1;
+    padding: 40px 20px 25px;
 }
 
 .app-header h1 { 
-    font-size: 32px; 
+    font-size: 30px; 
     font-weight: 700;
-    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 8px;
+    color: var(--gold);
+    margin-bottom: 6px;
 }
 
 body.light-mode .app-header h1 {
-    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--blue);
 }
 
 /* ============================================
@@ -262,39 +208,25 @@ body.light-mode .app-header h1 {
     max-width: 800px; 
     margin: 20px auto; 
     padding: 0 10px;
-    position: relative;
-    z-index: 1;
 }
 
 /* ============================================
-   FORM - Liquid Glass
+   FORM
    ============================================ */
 .feedback-form .feedback-card { 
     background: var(--card-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
     border-radius: var(--border-radius);
-    padding: 32px; 
+    padding: 28px; 
     box-shadow: var(--glass-shadow);
     display: flex; 
     flex-direction: column; 
-    gap: 12px;
-    position: relative;
+    gap: 10px;
 }
 
-.feedback-form .feedback-card::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 5px;
-    background: linear-gradient(180deg, var(--gold), var(--blue));
-    border-radius: var(--border-radius) 0 0 var(--border-radius);
-}
-
-.feedback-form .form-group { display: flex; flex-direction: column; margin-bottom: 18px; }
+.feedback-form .form-group { display: flex; flex-direction: column; margin-bottom: 16px; }
 .feedback-form .form-group label { 
     margin-bottom: 8px; 
     font-weight: 600; 
@@ -304,11 +236,6 @@ body.light-mode .app-header h1 {
 
 .feedback-form .form-group label strong {
     color: var(--text-primary);
-}
-
-body.light-mode .feedback-form .form-group label,
-body.light-mode .feedback-form .form-group label strong {
-    color: var(--blue);
 }
 
 .feedback-form .teacher-select-group { flex-direction: row; align-items: center; gap: 12px; }
@@ -327,13 +254,11 @@ body.light-mode .feedback-form .form-group label strong {
     font-size: 14px; 
     background: var(--input-bg);
     color: var(--text-primary);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06); 
-    margin-top: 4px;
-    transition: all 0.25s ease;
+    transition: all 0.2s ease;
 }
 
 .feedback-form select option {
-    background: #1a2744;
+    background: #0e1c45;
     color: white;
 }
 
@@ -349,111 +274,97 @@ body.light-mode .feedback-form textarea {
 
 .feedback-form select:focus, 
 .feedback-form textarea:focus { 
-    border-color: var(--blue);
-    box-shadow: 0 0 0 3px rgba(0, 51, 160, 0.2);
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(255, 184, 28, 0.2);
 }
 
 .feedback-form button.primary { 
-    margin-top: 16px; 
-    background: linear-gradient(135deg, var(--blue), var(--blue-dark)); 
+    margin-top: 14px; 
+    background: var(--blue);
     color: white; 
     border: none; 
-    padding: 16px 24px; 
+    padding: 14px 22px; 
     border-radius: var(--border-radius-sm);
     font-weight: 600; 
     cursor: pointer; 
-    transition: all 0.25s ease;
+    transition: all 0.2s ease;
     font-size: 15px;
     font-family: inherit;
 }
 
 .feedback-form button.primary:hover { 
-    transform: translateY(-3px); 
-    box-shadow: 0 12px 30px rgba(0, 51, 160, 0.4);
+    background: var(--blue-dark);
+    transform: translateY(-2px);
 }
 
 .thank-message {
     display: none;
     background: rgba(34, 197, 94, 0.15);
     border: 1px solid rgba(34, 197, 94, 0.3);
-    color: #22c55e;
-    padding: 16px 20px;
+    color: #4ade80;
+    padding: 14px 18px;
     border-radius: var(--border-radius-sm);
     text-align: center;
     font-weight: 600;
-    margin-top: 16px;
+    margin-top: 14px;
 }
 
-.thank-message.show { display: block; animation: fadeIn 0.3s ease; }
+.thank-message.show { display: block; }
 
 /* ============================================
    FEEDBACK LIST
    ============================================ */
-.card-list { display: flex; flex-direction: column; gap: 20px; margin-top: 20px; }
+.card-list { display: flex; flex-direction: column; gap: 18px; margin-top: 20px; }
 
 .feedback-card { 
     background: var(--card-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
     border-radius: var(--border-radius);
-    padding: 24px; 
+    padding: 22px; 
     box-shadow: var(--glass-shadow);
     cursor: pointer; 
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.feedback-card::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 5px;
-    background: linear-gradient(180deg, var(--gold), var(--blue));
-    border-radius: var(--border-radius) 0 0 var(--border-radius);
+    transition: all 0.2s ease;
 }
 
 .feedback-card:hover { 
-    transform: translateY(-4px); 
-    box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+    transform: translateY(-3px);
     border-color: var(--gold);
 }
 
-.card-top { display: flex; justify-content: space-between; margin-bottom: 14px; align-items: center; }
-.teacher { font-size: 18px; font-weight: 700; color: var(--text-primary); }
+.card-top { display: flex; justify-content: space-between; margin-bottom: 12px; align-items: center; }
+.teacher { font-size: 17px; font-weight: 700; color: var(--gold); }
 body.light-mode .teacher { color: var(--blue); }
 .meta { font-size: 12px; color: var(--text-muted); }
 
 .feedback-positive { 
     font-size: 15px; 
-    margin-top: 10px; 
+    margin-top: 8px; 
     color: var(--text-primary);
     line-height: 1.5;
 }
-.feedback-positive strong { color: #22c55e; }
+.feedback-positive strong { color: #4ade80; }
 
 .feedback-constructive { 
-    margin-top: 12px; 
-    padding-left: 14px; 
+    margin-top: 10px; 
+    padding-left: 12px; 
     border-left: 3px solid var(--glass-border);
     font-size: 14px; 
     color: var(--text-secondary);
     line-height: 1.5;
 }
-.feedback-constructive strong { color: #f59e0b; }
+.feedback-constructive strong { color: #fbbf24; }
 
 .empty { 
     background: var(--card-bg);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
     border-radius: var(--border-radius);
     padding: 50px 30px; 
     text-align: center; 
-    font-size: 16px; 
+    font-size: 15px; 
     color: var(--text-secondary);
-    box-shadow: var(--glass-shadow);
 }
 
 /* ============================================
@@ -467,7 +378,7 @@ body.light-mode .teacher { color: var(--blue); }
     width: 100%; 
     height: 100%; 
     background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(6px);
     display: flex; 
     justify-content: center; 
     align-items: center; 
@@ -478,41 +389,35 @@ body.light-mode .teacher { color: var(--blue); }
 
 .modal-content { 
     background: var(--card-bg);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     border: 1px solid var(--glass-border);
-    padding: 36px 32px;
-    border-radius: 24px; 
+    padding: 32px 28px;
+    border-radius: 20px; 
     width: 90%; 
-    max-width: 600px; 
-    box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+    max-width: 550px; 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
     position: relative;
-    animation: modalPop 0.3s ease;
 }
 
 body.light-mode .modal-content {
     background: rgba(255, 255, 255, 0.95);
 }
 
-@keyframes modalPop {
-    from { opacity: 0; transform: scale(0.9) translateY(20px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
-}
-
 .modal-content h2 { 
-    color: var(--text-primary); 
+    color: var(--gold);
     margin-top: 0;
-    font-size: 24px;
-    margin-bottom: 20px;
+    font-size: 22px;
+    margin-bottom: 18px;
 }
 
 body.light-mode .modal-content h2 { color: var(--blue); }
 
 .modal-content p { 
-    margin: 12px 0; 
+    margin: 10px 0; 
     color: var(--text-primary);
     font-size: 15px;
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
 body.light-mode .modal-content p { color: #333; }
@@ -520,29 +425,59 @@ body.light-mode .modal-content p { color: #333; }
 .modal-content .meta { 
     font-size: 13px; 
     color: var(--text-muted);
-    margin-top: 20px;
+    margin-top: 18px;
 }
 
 .modal .close { 
     position: absolute; 
-    top: 16px; 
-    right: 20px; 
-    font-size: 28px; 
+    top: 14px; 
+    right: 18px; 
+    font-size: 26px; 
     font-weight: bold; 
     cursor: pointer; 
     color: var(--text-secondary);
-    transition: all 0.2s ease;
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
+    transition: color 0.2s;
 }
 
-.modal .close:hover { 
-    background: var(--glass-bg);
-    color: var(--blue);
+.modal .close:hover { color: var(--gold); }
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero-section {
+    width: 92%;
+    max-width: 800px;
+    margin: 0 auto 24px;
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: var(--glass-shadow);
+}
+
+.hero-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hero-text h3 {
+    color: var(--text-primary);
+    font-size: 17px;
+    margin-bottom: 6px;
+}
+
+.hero-text p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.4;
 }
 
 /* ============================================
@@ -554,16 +489,9 @@ body.light-mode .modal-content p { color: #333; }
         align-items: flex-start;
         padding: 12px 16px;
     }
-    .nav-right { flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .nav-right { flex-wrap: wrap; gap: 6px; margin-top: 8px; }
     .app-header h1 { font-size: 26px; }
     .feedback-form .teacher-select-group { flex-direction: column; align-items: flex-start; }
     .feedback-form .teacher-select-group label { min-width: auto; }
-}
-
-/* ============================================
-   ANIMATIONS
-   ============================================ */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    .hero-section { flex-direction: column; text-align: center; }
 }

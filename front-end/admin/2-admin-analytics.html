@@ -27,16 +27,6 @@
         position: relative;
     }
 
-    .chart-card::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 5px;
-        background: linear-gradient(180deg, var(--gold), var(--blue));
-        border-radius: 20px 0 0 20px;
-    }
 
     .chart-card h2 {
         color: var(--text-primary);
@@ -89,25 +79,16 @@
         box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
     }
 
-    .stat-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, var(--blue), var(--gold));
-    }
-
     .stat-card .value {
         font-size: 40px;
         font-weight: 700;
-        background: linear-gradient(135deg, var(--blue), #3366cc);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: var(--gold);
         display: block;
         line-height: 1.2;
+    }
+
+    body.light-mode .stat-card .value {
+        color: var(--blue);
     }
 
     .stat-card .label {

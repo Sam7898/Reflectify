@@ -25,16 +25,6 @@
         position: relative;
     }
 
-    .settings-card::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 5px;
-        background: linear-gradient(180deg, var(--gold), var(--blue));
-        border-radius: 20px 0 0 20px;
-    }
 
     .settings-card h2 {
         color: var(--text-primary);
@@ -191,8 +181,29 @@
     // Dropdown
     const profileBtn = document.getElementById('profileBtn');
     const profileMenu = document.getElementById('profileMenu');
-    profileBtn?.addEventListener('click', (e) => { e.stopPropagation(); profileMenu.classList.toggle('show'); profileMenu.classList.toggle('hide'); });
-    document.addEventListener('click', () => { profileMenu?.classList.remove('show'); profileMenu?.classList.add('hide'); });
+    if (profileBtn && profileMenu) {
+        profileMenu.classList.add('hide');
+        profileMenu.classList.remove('show');
+        
+        profileBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isVisible = profileMenu.classList.contains('show');
+            if (isVisible) {
+                profileMenu.classList.remove('show');
+                profileMenu.classList.add('hide');
+            } else {
+                profileMenu.classList.add('show');
+                profileMenu.classList.remove('hide');
+            }
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (!profileMenu.contains(e.target) && e.target !== profileBtn) {
+                profileMenu.classList.remove('show');
+                profileMenu.classList.add('hide');
+            }
+        });
+    }
 
     // Load user data
     document.addEventListener('DOMContentLoaded', () => {

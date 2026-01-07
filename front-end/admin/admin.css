@@ -1,12 +1,12 @@
 /* ============================================
    REFLECTIFY ADMIN DASHBOARD
-   Liquid Glass UI Design
+   Clean LISD Theme - Blue & Gold
    ============================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Core Colors */
+  /* Core LISD Colors */
   --blue: #0033A0;
   --blue-dark: #001f66;
   --blue-light: #3366cc;
@@ -14,36 +14,31 @@
   --gold-light: #ffd666;
   
   /* Dark Mode (Default) */
-  --bg-primary: linear-gradient(135deg, #0a1628 0%, #1a2744 50%, #0d1b2a 100%);
-  --bg-secondary: rgba(255, 255, 255, 0.05);
-  --glass-bg: rgba(255, 255, 255, 0.08);
-  --glass-border: rgba(255, 255, 255, 0.15);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --bg-primary: linear-gradient(135deg, #0033A0 0%, #0e1c45 100%);
+  --glass-bg: rgba(255, 255, 255, 0.12);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --text-muted: rgba(255, 255, 255, 0.5);
+  --text-secondary: rgba(255, 255, 255, 0.85);
+  --text-muted: rgba(255, 255, 255, 0.6);
   --card-bg: rgba(255, 255, 255, 0.1);
   --nav-bg: rgba(0, 0, 0, 0.25);
   
-  /* UI Elements */
-  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.15);
-  --shadow-glow: 0 0 40px rgba(0, 51, 160, 0.2);
-  --border-radius: 20px;
-  --border-radius-sm: 12px;
+  --border-radius: 16px;
+  --border-radius-sm: 10px;
 }
 
-/* Light Mode - Liquid Glass */
+/* Light Mode */
 body.light-mode {
-  --bg-primary: linear-gradient(135deg, #e8f0ff 0%, #f5f7fa 50%, #e0e8f5 100%);
-  --bg-secondary: rgba(0, 51, 160, 0.03);
-  --glass-bg: rgba(255, 255, 255, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.8);
+  --bg-primary: linear-gradient(135deg, #f0f4fa 0%, #e8eef5 100%);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 51, 160, 0.15);
   --glass-shadow: 0 8px 32px rgba(0, 51, 160, 0.1);
   --text-primary: #1a1a2e;
   --text-secondary: #444;
   --text-muted: #666;
-  --card-bg: rgba(255, 255, 255, 0.7);
-  --nav-bg: rgba(255, 255, 255, 0.85);
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --nav-bg: rgba(255, 255, 255, 0.9);
 }
 
 * {
@@ -56,42 +51,9 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--bg-primary);
   min-height: 100vh;
-  padding-bottom: 60px;
+  padding-bottom: 50px;
   color: var(--text-primary);
-  overflow-x: hidden;
-}
-
-/* Background Decorative Elements */
-body::before {
-  content: '';
-  position: fixed;
-  top: -50%;
-  right: -30%;
-  width: 80%;
-  height: 80%;
-  background: radial-gradient(circle, rgba(0, 51, 160, 0.15) 0%, transparent 60%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-body::after {
-  content: '';
-  position: fixed;
-  bottom: -30%;
-  left: -20%;
-  width: 60%;
-  height: 60%;
-  background: radial-gradient(circle, rgba(255, 184, 28, 0.1) 0%, transparent 60%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-body.light-mode::before {
-  background: radial-gradient(circle, rgba(0, 51, 160, 0.08) 0%, transparent 60%);
-}
-
-body.light-mode::after {
-  background: radial-gradient(circle, rgba(255, 184, 28, 0.08) 0%, transparent 60%);
+  background-attachment: fixed;
 }
 
 /* ============================================
@@ -110,11 +72,6 @@ body.light-mode::after {
   top: 0;
   z-index: 2000;
   border-bottom: 1px solid var(--glass-border);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-}
-
-body.light-mode .top-nav {
-  border-bottom: 1px solid rgba(0, 51, 160, 0.1);
 }
 
 .nav-left {
@@ -125,12 +82,7 @@ body.light-mode .top-nav {
 .lisd-logo {
   height: 42px;
   width: auto;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-  transition: transform 0.3s ease;
-}
-
-.lisd-logo:hover {
-  transform: scale(1.02);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
 }
 
 .nav-right {
@@ -144,10 +96,9 @@ body.light-mode .top-nav {
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
-  padding: 10px 18px;
+  padding: 10px 16px;
   border-radius: var(--border-radius-sm);
-  transition: all 0.25s ease;
-  position: relative;
+  transition: all 0.2s ease;
 }
 
 .nav-link:hover {
@@ -155,17 +106,9 @@ body.light-mode .top-nav {
 }
 
 .nav-link.active {
-  background: var(--blue);
-  color: white;
-  box-shadow: 0 4px 15px rgba(0, 51, 160, 0.3);
-}
-
-body.light-mode .nav-link {
-  color: var(--text-primary);
-}
-
-body.light-mode .nav-link.active {
-  color: white;
+  background: var(--gold);
+  color: #1a1a1a;
+  font-weight: 600;
 }
 
 /* ============================================
@@ -173,27 +116,18 @@ body.light-mode .nav-link.active {
    ============================================ */
 header.app-header {
   text-align: center;
-  padding: 50px 20px 30px;
-  position: relative;
-  z-index: 1;
+  padding: 40px 20px 25px;
 }
 
 header.app-header h1 {
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 700;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 8px;
-  letter-spacing: -0.5px;
+  color: var(--gold);
+  margin-bottom: 6px;
 }
 
 body.light-mode header.app-header h1 {
-  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--blue);
 }
 
 /* ============================================
@@ -203,8 +137,6 @@ body.light-mode header.app-header h1 {
   width: 92%;
   max-width: 1100px;
   margin: 20px auto;
-  position: relative;
-  z-index: 1;
 }
 
 /* ============================================
@@ -220,7 +152,7 @@ body.light-mode header.app-header h1 {
 
 .controls select,
 .controls button {
-  padding: 12px 20px;
+  padding: 12px 18px;
   border-radius: var(--border-radius-sm);
   font-size: 14px;
   font-weight: 500;
@@ -230,12 +162,12 @@ body.light-mode header.app-header h1 {
   backdrop-filter: blur(10px);
   color: var(--text-primary);
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
   font-family: inherit;
 }
 
 .controls select option {
-  background: #1a2744;
+  background: #0e1c45;
   color: white;
 }
 
@@ -244,30 +176,28 @@ body.light-mode .controls select option {
   color: #1a1a1a;
 }
 
-.controls select:hover,
 .controls button:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-soft);
 }
 
 .controls button.primary {
-  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  background: var(--blue);
   color: white;
   border: none;
 }
 
 .controls button.primary:hover {
-  box-shadow: 0 8px 25px rgba(0, 51, 160, 0.35);
+  background: var(--blue-dark);
 }
 
 .controls button.warn {
-  background: linear-gradient(135deg, #e53935, #c62828);
+  background: #dc2626;
   color: white;
   border: none;
 }
 
 .controls button.warn:hover {
-  box-shadow: 0 8px 25px rgba(229, 57, 53, 0.35);
+  background: #b91c1c;
 }
 
 /* ============================================
@@ -278,74 +208,45 @@ body.light-mode .controls select option {
   max-width: 1200px;
   margin: 30px auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 24px;
-  position: relative;
-  z-index: 1;
 }
 
 /* ============================================
-   DASHBOARD CARDS - Liquid Glass
+   DASHBOARD CARDS
    ============================================ */
 .dashboard-card {
   background: var(--card-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
   border-radius: var(--border-radius);
-  padding: 32px 28px;
+  padding: 28px 24px;
   box-shadow: var(--glass-shadow);
   text-decoration: none;
   color: var(--text-primary);
   text-align: center;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.dashboard-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--blue), var(--gold));
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .dashboard-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  transform: translateY(-6px);
   border-color: var(--gold);
-}
-
-.dashboard-card:hover::before {
-  opacity: 1;
+  box-shadow: 0 12px 40px rgba(255, 184, 28, 0.15);
 }
 
 .dashboard-card img {
-  width: 72px;
-  height: 72px;
-  margin-bottom: 18px;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 16px;
   opacity: 0.9;
-  transition: transform 0.3s ease;
-}
-
-.dashboard-card:hover img {
-  transform: scale(1.1);
 }
 
 .dashboard-card h2 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 8px;
-}
-
-body.light-mode .dashboard-card h2 {
-  color: var(--blue);
 }
 
 .dashboard-card p {
@@ -360,36 +261,23 @@ body.light-mode .dashboard-card h2 {
 .card-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
 .feedback-card {
   background: var(--card-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
   border-radius: var(--border-radius);
-  padding: 24px;
+  padding: 22px;
   box-shadow: var(--glass-shadow);
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
   cursor: pointer;
-  position: relative;
-}
-
-.feedback-card::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 5px;
-  background: linear-gradient(180deg, var(--gold), var(--blue));
-  border-radius: var(--border-radius) 0 0 var(--border-radius);
 }
 
 .feedback-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
   border-color: var(--gold);
 }
 
@@ -397,13 +285,13 @@ body.light-mode .dashboard-card h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .teacher {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--gold);
 }
 
 body.light-mode .teacher {
@@ -417,18 +305,18 @@ body.light-mode .teacher {
 
 .feedback-positive {
   font-size: 15px;
-  margin-top: 10px;
+  margin-top: 8px;
   color: var(--text-primary);
   line-height: 1.5;
 }
 
 .feedback-positive strong {
-  color: #22c55e;
+  color: #4ade80;
 }
 
 .feedback-constructive {
-  margin-top: 12px;
-  padding-left: 14px;
+  margin-top: 10px;
+  padding-left: 12px;
   border-left: 3px solid var(--glass-border);
   font-size: 14px;
   color: var(--text-secondary);
@@ -436,39 +324,36 @@ body.light-mode .teacher {
 }
 
 .feedback-constructive strong {
-  color: #f59e0b;
+  color: #fbbf24;
 }
 
 /* Empty State */
 .empty {
   background: var(--card-bg);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
   border-radius: var(--border-radius);
   padding: 50px 30px;
   text-align: center;
-  font-size: 16px;
+  font-size: 15px;
   color: var(--text-secondary);
-  box-shadow: var(--glass-shadow);
 }
 
 /* ============================================
    MODAL
    ============================================ */
 .modal {
-  position: fixed;
-  top: 0;
-  left: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(6px);
   display: flex;
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
   z-index: 10000;
-  opacity: 1;
-  transition: opacity 0.3s ease;
 }
 
 .modal.hide {
@@ -477,38 +362,26 @@ body.light-mode .teacher {
 
 .modal-content {
   background: var(--card-bg);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--glass-border);
-  padding: 36px 32px;
-  border-radius: 24px;
-  width: 90%;
-  max-width: 600px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
-  position: relative;
-  animation: modalPop 0.3s ease;
+  padding: 32px 28px;
+    border-radius: 20px;
+    width: 90%;
+  max-width: 550px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    position: relative;
 }
 
 body.light-mode .modal-content {
   background: rgba(255, 255, 255, 0.95);
 }
 
-@keyframes modalPop {
-  from {
-    opacity: 0;
-    transform: scale(0.9) translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
 .modal-content h2 {
-  color: var(--text-primary);
-  margin-top: 0;
-  font-size: 24px;
-  margin-bottom: 20px;
+  color: var(--gold);
+    margin-top: 0;
+  font-size: 22px;
+  margin-bottom: 18px;
 }
 
 body.light-mode .modal-content h2 {
@@ -516,10 +389,10 @@ body.light-mode .modal-content h2 {
 }
 
 .modal-content p {
-  margin: 12px 0;
+    margin: 10px 0;
   color: var(--text-primary);
   font-size: 15px;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 body.light-mode .modal-content p {
@@ -527,22 +400,22 @@ body.light-mode .modal-content p {
 }
 
 .modal-content .meta {
-  font-size: 13px;
+    font-size: 13px;
   color: var(--text-muted);
-  margin-top: 20px;
+  margin-top: 18px;
 }
 
 .modal .close {
-  position: absolute;
-  top: 16px;
-  right: 20px;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
+    position: absolute;
+  top: 14px;
+    right: 18px;
+  font-size: 26px;
+    font-weight: bold;
+    cursor: pointer;
   color: var(--text-secondary);
-  transition: all 0.2s ease;
-  width: 36px;
-  height: 36px;
+  transition: color 0.2s ease;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -550,8 +423,7 @@ body.light-mode .modal-content p {
 }
 
 .modal .close:hover {
-  background: var(--glass-bg);
-  color: var(--blue);
+  color: var(--gold);
 }
 
 /* ============================================
@@ -559,42 +431,40 @@ body.light-mode .modal-content p {
    ============================================ */
 .profile-dropdown {
   position: relative;
-  display: inline-block;
 }
 
 .nav-icon {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   margin-left: 12px;
   cursor: pointer;
   border-radius: 50%;
   background: white;
   padding: 3px;
-  transition: all 0.25s ease;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .nav-icon:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transform: scale(1.08);
 }
 
 .dropdown-menu {
   position: absolute;
-  top: 54px;
+  top: 50px;
   right: 0;
-  width: 240px;
+  width: 220px;
   background: var(--card-bg);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--glass-border);
-  border-radius: 16px;
-  padding: 18px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
   opacity: 0;
-  pointer-events: none;
-  transform: translateY(-10px);
-  transition: all 0.25s ease;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.2s ease;
   z-index: 10000;
 }
 
@@ -604,21 +474,21 @@ body.light-mode .dropdown-menu {
 
 .dropdown-menu.show {
   opacity: 1;
-  pointer-events: all;
+  visibility: visible;
   transform: translateY(0);
 }
 
 .dropdown-menu.hide {
   opacity: 0;
-  pointer-events: none;
+  visibility: hidden;
 }
 
 .dropdown-menu h3 {
-  margin: 0 0 14px;
-  font-size: 16px;
+  margin: 0 0 12px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--text-primary);
-  padding-bottom: 12px;
+  padding-bottom: 10px;
   border-bottom: 1px solid var(--glass-border);
 }
 
@@ -628,12 +498,12 @@ body.light-mode .dropdown-menu h3 {
 
 .dropdown-item {
   width: 100%;
-  padding: 12px 14px;
+  padding: 11px 14px;
   border: none;
   outline: none;
   background: var(--glass-bg);
-  border-radius: 10px;
-  margin: 6px 0;
+  border-radius: 8px;
+  margin: 5px 0;
   cursor: pointer;
   text-align: left;
   font-size: 14px;
@@ -643,13 +513,12 @@ body.light-mode .dropdown-menu h3 {
 }
 
 .dropdown-item:hover {
-  background: var(--blue);
-  color: white;
-  transform: translateX(4px);
+  background: var(--gold);
+  color: #1a1a1a;
 }
 
 /* ============================================
-   RESPONSIVE DESIGN
+   RESPONSIVE
    ============================================ */
 @media (max-width: 768px) {
   .top-nav {
@@ -664,19 +533,15 @@ body.light-mode .dropdown-menu h3 {
   
   .nav-link {
     font-size: 12px;
-    padding: 8px 12px;
+    padding: 8px 10px;
   }
   
   header.app-header h1 {
-    font-size: 28px;
+    font-size: 26px;
   }
   
   .dashboard-grid {
     grid-template-columns: 1fr;
-    width: 95%;
-  }
-  
-  .container {
     width: 95%;
   }
 }
@@ -686,7 +551,7 @@ body.light-mode .dropdown-menu h3 {
    ============================================ */
 .loading {
   text-align: center;
-  margin: 30px 0;
+  margin: 20px 0;
 }
 
 .loading.hide {
@@ -694,20 +559,15 @@ body.light-mode .dropdown-menu h3 {
 }
 
 .spinner {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border: 3px solid var(--glass-border);
-  border-top-color: var(--blue);
+  border-top-color: var(--gold);
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  margin: 0 auto 12px;
+  animation: spin 0.7s linear infinite;
+  margin: 0 auto 10px;
 }
 
 @keyframes spin {
   to { transform: rotate(360deg); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
 }
