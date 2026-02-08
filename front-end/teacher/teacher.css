@@ -30,15 +30,78 @@
 
 /* Light Mode */
 body.light-mode {
-    --bg-primary: linear-gradient(135deg, #f0f4fa 0%, #e8eef5 100%);
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(0, 51, 160, 0.15);
-    --glass-shadow: 0 8px 32px rgba(0, 51, 160, 0.1);
-    --text-primary: #1a1a2e;
-    --text-secondary: #444;
-    --text-muted: #666;
-    --card-bg: rgba(255, 255, 255, 0.85);
-    --nav-bg: rgba(255, 255, 255, 0.9);
+    --bg-primary: #f5f7fa;
+    --glass-bg: #ffffff;
+    --glass-border: #d0d7e2;
+    --glass-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --text-primary: #1a1a1a;
+    --text-secondary: #333333;
+    --text-muted: #555555;
+    --card-bg: #ffffff;
+    --nav-bg: #ffffff;
+    background: #f5f7fa !important;
+    color: #1a1a1a !important;
+}
+
+body.light-mode,
+body.light-mode *,
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode p,
+body.light-mode span,
+body.light-mode a,
+body.light-mode button,
+body.light-mode label,
+body.light-mode td,
+body.light-mode th,
+body.light-mode div {
+    color: #1a1a1a !important;
+}
+
+body.light-mode .nav-link.active {
+    color: #1a1a1a !important;
+    background: #FFB81C !important;
+}
+
+body.light-mode .submit-btn {
+    color: #ffffff !important;
+    background: #0033A0 !important;
+}
+
+body.light-mode .app-header h1,
+body.light-mode .stat-value,
+body.light-mode .dropdown-menu h3 {
+    color: #0033A0 !important;
+}
+
+body.light-mode .tip-box strong {
+    color: #d97706 !important;
+}
+
+body.light-mode .top-nav {
+    background: #ffffff !important;
+    border-bottom: 1px solid #d0d7e2 !important;
+}
+
+body.light-mode .dashboard-card,
+body.light-mode .hero-banner,
+body.light-mode .feedback-table-container,
+body.light-mode .settings-card {
+    background: #ffffff !important;
+    border: 1px solid #d0d7e2 !important;
+}
+
+body.light-mode .dropdown-menu {
+    background: #ffffff !important;
+}
+
+body.light-mode .dropdown-item {
+    background: #f0f0f0 !important;
+}
+
+body.light-mode .dropdown-item:hover {
+    background: #FFB81C !important;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -119,13 +182,11 @@ html, body {
     top: 50px;
     right: 0;
     width: 220px;
-    background: var(--card-bg);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid var(--glass-border);
+    background: #0e1c45;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 14px;
     padding: 16px;
-    box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.4);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
@@ -134,7 +195,9 @@ html, body {
 }
 
 body.light-mode .dropdown-menu {
-    background: rgba(255, 255, 255, 0.95);
+    background: #ffffff;
+    border: 1px solid #d0d7e2;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
 }
 
 .dropdown-menu.show { opacity: 1; visibility: visible; transform: translateY(0); }

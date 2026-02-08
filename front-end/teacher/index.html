@@ -29,10 +29,9 @@
 
         .hero-image {
             width: 140px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 16px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            height: auto;
+            max-height: 70px;
+            object-fit: contain;
             flex-shrink: 0;
         }
 
@@ -93,7 +92,7 @@
             <a href="index.html" class="nav-link active">Home</a>
             <a href="feedback.html" class="nav-link">View Feedback</a>
             <div class="profile-dropdown">
-                <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="nav-icon" id="profileBtn">
+                <div class="nav-icon" id="profileBtn" style="display:flex;align-items:center;justify-content:center;background:var(--gold);color:#1a1a1a;font-weight:700;font-size:14px;">T</div>
                 <div class="dropdown-menu hide" id="profileMenu">
                     <h3>Teacher Settings</h3>
                     <button class="dropdown-item" id="themeToggle">Toggle Light/Dark Mode</button>
@@ -111,27 +110,25 @@
 
     <!-- Hero Banner -->
     <div class="hero-banner">
-        <img src="https://www.leanderisd.org/wp-content/uploads/2025/04/LISD-Home-Enroll-Now.jpg" alt="Leander ISD" class="hero-image">
+        <img src="https://www.leanderisd.org/wp-content/uploads/2025/05/LEANDER✵ISD-Duotone-Blue-With-Tagline.png" alt="Leander ISD" class="hero-image">
         <div class="hero-content">
-            <h2>📚 Your Teaching Insights</h2>
+            <h2>Your Teaching Insights</h2>
             <p>Track student feedback and understand how your teaching is perceived. Use these insights to enhance your classroom experience and student engagement.</p>
             <div class="tip-box">
-                <strong>💡 Tip:</strong> Check your feedback regularly to identify patterns and areas for improvement!
+                <strong>Tip:</strong> Check your feedback regularly to identify patterns and areas for improvement!
             </div>
         </div>
     </div>
 
     <div class="dashboard-grid">
         <a href="feedback.html" class="dashboard-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/3884/3884851.png" alt="Feedback">
-            <h2>💬 View Feedback</h2>
+            <h2>View Feedback</h2>
             <p>See what your students are saying</p>
             <span class="card-badge" id="feedbackCount">0 new</span>
         </a>
 
         <div class="dashboard-card stats-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" alt="Stats">
-            <h2>📊 Quick Stats</h2>
+            <h2>Quick Stats</h2>
             <div class="stats-grid">
                 <div class="stat-item">
                     <span class="stat-value" id="totalFeedback">0</span>
@@ -145,8 +142,7 @@
         </div>
 
         <a href="settings.html" class="dashboard-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/2099/2099058.png" alt="Settings">
-            <h2>⚙️ Settings</h2>
+            <h2>Settings</h2>
             <p>Manage your profile</p>
         </a>
     </div>

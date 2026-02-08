@@ -67,7 +67,7 @@
         <a href="3-admin-feedback.html" class="nav-link active">Feedback</a>
         <a href="4-admin-accounts.html" class="nav-link">Accounts</a>
         <div class="profile-dropdown">
-            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="nav-icon" id="profileBtn">
+            <div class="nav-icon" id="profileBtn" style="display:flex;align-items:center;justify-content:center;background:var(--gold);color:#1a1a1a;font-weight:700;font-size:14px;">A</div>
             <div class="dropdown-menu hide" id="profileMenu">
                 <h3>Admin Settings</h3>
                 <button class="dropdown-item" id="themeToggle">Toggle Light/Dark Mode</button>
@@ -79,14 +79,13 @@
 </nav>
 
 <header class="app-header">
-    <h1>💬 Feedback Dashboard</h1>
+    <h1>Feedback Dashboard</h1>
 </header>
 
 <!-- Header Card -->
 <div class="feedback-header-card">
-    <img src="https://cdn-icons-png.flaticon.com/512/3884/3884851.png" alt="Feedback">
     <div class="feedback-header-text">
-        <h3>📋 Student Feedback Review</h3>
+        <h3>Student Feedback Review</h3>
         <p>View and manage all student feedback submissions. Filter by teacher to see specific feedback, or clear all to start fresh.</p>
     </div>
 </div>
@@ -96,8 +95,8 @@
         <select id="teacherFilter">
             <option value="all">All Teachers</option>
         </select>
-        <button class="primary" id="refreshBtn">🔄 Refresh</button>
-        <button class="warn" id="clearBtn">🗑️ Clear All</button>
+        <button class="primary" id="refreshBtn">Refresh</button>
+        <button class="warn" id="clearBtn">Clear All</button>
     </div>
 
     <div id="feedbackList" class="card-list"></div>

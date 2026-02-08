@@ -27,11 +27,10 @@
 
 
     .hero-image {
-        width: 200px;
-        height: 140px;
-        object-fit: cover;
-        border-radius: 16px;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        width: 160px;
+        height: auto;
+        max-height: 80px;
+        object-fit: contain;
         flex-shrink: 0;
     }
 
@@ -154,7 +153,7 @@
         <a href="3-admin-feedback.html" class="nav-link">Feedback</a>
         <a href="4-admin-accounts.html" class="nav-link">Accounts</a>
         <div class="profile-dropdown">
-            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="nav-icon" id="profileBtn">
+            <div class="nav-icon" id="profileBtn" style="display:flex;align-items:center;justify-content:center;background:var(--gold);color:#1a1a1a;font-weight:700;font-size:14px;">A</div>
             <div class="dropdown-menu hide" id="profileMenu">
                 <h3>Admin Settings</h3>
                 <button class="dropdown-item" id="themeToggle">Toggle Light/Dark Mode</button>
@@ -171,9 +170,9 @@
 
 <!-- Hero Banner -->
 <div class="hero-banner">
-    <img src="https://www.leanderisd.org/wp-content/uploads/2025/04/LISD-Home-Enroll-Now.jpg" alt="Leander ISD" class="hero-image">
+    <img src="https://www.leanderisd.org/wp-content/uploads/2025/05/LEANDER✵ISD-Duotone-Blue-With-Tagline.png" alt="Leander ISD" class="hero-image">
     <div class="hero-content">
-        <h2>📊 Reflectify Admin Dashboard</h2>
+        <h2>Reflectify Admin Dashboard</h2>
         <p>Welcome to the administrator control center. Monitor student feedback, analyze teacher performance metrics, and manage user accounts across Leander ISD.</p>
         <div class="hero-stats">
             <div class="hero-stat">
@@ -194,37 +193,33 @@
 
 <!-- Quick Actions -->
 <div class="quick-actions">
-    <a href="2-admin-analytics.html" class="quick-action-btn">📈 View Analytics</a>
-    <a href="3-admin-feedback.html" class="quick-action-btn secondary">💬 Review Feedback</a>
-    <a href="4-admin-accounts.html" class="quick-action-btn secondary">👥 Manage Accounts</a>
+    <a href="2-admin-analytics.html" class="quick-action-btn">View Analytics</a>
+    <a href="3-admin-feedback.html" class="quick-action-btn secondary">Review Feedback</a>
+    <a href="4-admin-accounts.html" class="quick-action-btn secondary">Manage Accounts</a>
 </div>
 
 <div class="dashboard-grid">
     <!-- Analytics -->
     <a href="2-admin-analytics.html" class="dashboard-card">
-        <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" alt="Analytics">
-        <h2>📊 Analytics</h2>
+        <h2>Analytics</h2>
         <p>View data, metrics, and performance insights across all teachers.</p>
     </a>
 
     <!-- Feedback Dashboard -->
     <a href="3-admin-feedback.html" class="dashboard-card">
-        <img src="https://cdn-icons-png.flaticon.com/512/3884/3884851.png" alt="Feedback">
-        <h2>💬 Feedback Dashboard</h2>
+        <h2>Feedback Dashboard</h2>
         <p>Review and manage all student feedback submissions.</p>
     </a>
 
     <!-- Account Management -->
     <a href="4-admin-accounts.html" class="dashboard-card">
-        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Accounts">
-        <h2>👥 Account Management</h2>
+        <h2>Account Management</h2>
         <p>View and delete student & teacher accounts.</p>
     </a>
 
     <!-- Settings -->
     <a href="settings.html" class="dashboard-card">
-        <img src="https://cdn-icons-png.flaticon.com/512/2099/2099058.png" alt="Settings">
-        <h2>⚙️ Settings</h2>
+        <h2>Settings</h2>
         <p>Manage your admin profile and preferences.</p>
     </a>
 </div>

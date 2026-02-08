@@ -85,16 +85,14 @@
         .logo-section { text-align: center; margin-bottom: 28px; }
 
         .logo {
-            width: 72px;
-            height: 72px;
-            background: linear-gradient(135deg, var(--blue), var(--blue-dark));
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 80px;
+            height: 80px;
             margin: 0 auto 14px;
-            font-size: 32px;
-            box-shadow: 0 8px 25px rgba(0, 51, 160, 0.4);
+        }
+        
+        .logo svg {
+            width: 100%;
+            height: 100%;
         }
 
         .logo-section h1 { 
@@ -285,7 +283,13 @@
     <div class="login-container">
         <div class="login-card">
             <div class="logo-section">
-                <div class="logo">📝</div>
+                <div class="logo">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="64" height="64" rx="14" fill="#f0f4f8"/>
+                        <path d="M32 12C21.5 12 13 19.5 13 28.5C13 33.5 15.5 38 19.5 41L18 52L29 45.5C30 45.7 31 45.8 32 45.8C42.5 45.8 51 38.3 51 29.3C51 20.3 42.5 12 32 12Z" stroke="#1e3a5f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <path d="M24 29L29 34L40 23" stroke="#1e3a5f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
                 <h1>Reflectify</h1>
                 <p>Student Feedback Portal</p>
             </div>

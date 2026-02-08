@@ -7,11 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
   
     function applyTheme(isDark) {
       if (isDark) {
-        document.body.style.background = "linear-gradient(135deg, #0033A0 0%, #0e1c45 100%)";
-        document.documentElement.style.setProperty("--card", "rgba(255,255,255,0.7)");
+        document.body.classList.remove("light-mode");
       } else {
-        document.body.style.background = "linear-gradient(135deg, #ffffff 0%, #eaeaea 100%)";
-        document.documentElement.style.setProperty("--card", "rgba(255,255,255,0.9)");
+        document.body.classList.add("light-mode");
       }
     }
   

@@ -203,11 +203,10 @@
     }
 
     .school-banner img {
-        width: 120px;
-        height: 80px;
-        object-fit: cover;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        width: 140px;
+        height: auto;
+        max-height: 60px;
+        object-fit: contain;
     }
 
     .school-banner-text h3 {
@@ -252,7 +251,7 @@
         <a href="3-admin-feedback.html" class="nav-link">Feedback</a>
         <a href="4-admin-accounts.html" class="nav-link">Accounts</a>
         <div class="profile-dropdown">
-            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="nav-icon" id="profileBtn">
+            <div class="nav-icon" id="profileBtn" style="display:flex;align-items:center;justify-content:center;background:var(--gold);color:#1a1a1a;font-weight:700;font-size:14px;">A</div>
             <div class="dropdown-menu hide" id="profileMenu">
                 <h3>Admin Settings</h3>
                 <button class="dropdown-item" id="themeToggle">Toggle Light/Dark Mode</button>
@@ -270,7 +269,7 @@
 <div class="analytics-container">
     <!-- School Banner -->
     <div class="school-banner">
-        <img src="https://www.leanderisd.org/wp-content/uploads/2025/04/LISD-Home-Enroll-Now.jpg" alt="Leander ISD">
+        <img src="https://www.leanderisd.org/wp-content/uploads/2025/05/LEANDER✵ISD-Duotone-Blue-With-Tagline.png" alt="Leander ISD">
         <div class="school-banner-text">
             <h3>Leander Independent School District</h3>
             <p>Track teacher performance and student feedback analytics across the district</p>
@@ -299,7 +298,7 @@
 
     <!-- Filters Card -->
     <div class="chart-card">
-        <h2>📊 Data Filters</h2>
+        <h2>Data Filters</h2>
         <p>Customize which metrics and teachers to display in the charts</p>
         <div class="filter-row">
             <label for="metricFilter">Metric:</label>
@@ -317,7 +316,7 @@
 
     <!-- Main Line Chart -->
     <div class="chart-card">
-        <h2 id="chartTitle">📈 Teacher Performance Over School Year</h2>
+        <h2 id="chartTitle">Teacher Performance Over School Year</h2>
         <p id="chartSubtitle">Number of responses by period</p>
         <div class="chart-wrapper">
             <canvas id="analyticsChart"></canvas>
@@ -332,7 +331,7 @@
 
     <!-- Comparison Bar Chart -->
     <div class="chart-card">
-        <h2>📊 Teacher Comparison</h2>
+        <h2>Teacher Comparison</h2>
         <p>Compare performance metrics across all teachers</p>
         <div class="chart-wrapper">
             <canvas id="comparisonChart"></canvas>
@@ -421,9 +420,9 @@
         const themeColors = getChartColors();
         
         const metricLabels = {
-            'responses': { title: '📈 Teacher Performance Over School Year', subtitle: 'Number of responses by period', yLabel: 'Number of Responses' },
-            'positive': { title: '📈 Positive Feedback Over School Year', subtitle: 'Number of positive-only feedback by period', yLabel: 'Positive Feedback Count' },
-            'constructive': { title: '📈 Constructive Feedback Over School Year', subtitle: 'Number of constructive feedback by period', yLabel: 'Constructive Feedback Count' }
+            'responses': { title: 'Teacher Performance Over School Year', subtitle: 'Number of responses by period', yLabel: 'Number of Responses' },
+            'positive': { title: 'Positive Feedback Over School Year', subtitle: 'Number of positive-only feedback by period', yLabel: 'Positive Feedback Count' },
+            'constructive': { title: 'Constructive Feedback Over School Year', subtitle: 'Number of constructive feedback by period', yLabel: 'Constructive Feedback Count' }
         };
         
         chartTitle.textContent = metricLabels[selectedMetric].title;
